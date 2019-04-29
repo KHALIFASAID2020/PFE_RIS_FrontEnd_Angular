@@ -14,8 +14,11 @@ export class TopnavComponent implements OnInit {
 
 currentUser: User;
 userFromApi : User;
+email: string;
   constructor(private translate: TranslateService,private router: Router,private authService: AuthService) {
     this.currentUser = this.authService.currentUserValue;
+    this.email = this.currentUser.email;
+
   }
 
   ngOnInit() {

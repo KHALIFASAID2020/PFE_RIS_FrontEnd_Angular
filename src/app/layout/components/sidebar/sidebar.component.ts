@@ -9,9 +9,11 @@ import { User } from 'src/app/login/auth-data.model';
 })
 export class SidebarComponent implements OnInit {
 currentUser: User;
+email: string;
   public showMenu: string;
   constructor(private authService : AuthService) {
     this.authService.currentUser.subscribe(x => this.currentUser =x);
+    const email = this.currentUser.email;
   }
   get isAdmin(){
     return this.currentUser && this.currentUser.role === 'Admin';
