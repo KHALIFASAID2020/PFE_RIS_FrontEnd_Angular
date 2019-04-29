@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout.component';
-
+import { AuthGuard } from '../login/auth.guard';
 const routes: Routes = [
   {
       path: '',
@@ -34,7 +34,7 @@ const routes: Routes = [
           {
             path: 'actions',
             loadChildren: './actions/actions.module#ActionsModule'
-          },//statistic
+          },
           {
             path: 'statistics',
             loadChildren: './statistic/statistic.module#StatisticModule'
