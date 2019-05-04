@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { SentcomplaintModule } from './layout/sentcomplaint/sentcomplaint.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import {JwtInterceptor} from './login/jwt.interceptor';
@@ -46,7 +45,7 @@ export const createTranslateLoader = (http: HttpClient) => {
       }
   }),
 
-    SentcomplaintModule
+
 
 
 

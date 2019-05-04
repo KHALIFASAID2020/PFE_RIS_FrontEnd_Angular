@@ -38,6 +38,10 @@ const routes: Routes = [
           {
             path: 'statistics',
             loadChildren: './statistic/statistic.module#StatisticModule'
+          },
+          {
+            path: 'users',
+            loadChildren: './users-manager/users-manager.module#UserManagerModule'
           }
         ]
   }

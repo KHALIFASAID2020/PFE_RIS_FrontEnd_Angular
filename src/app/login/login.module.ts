@@ -5,7 +5,8 @@ import {LoginComponent} from './login.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http'
-import { MatButtonModule, MatCheckboxModule, MatInputModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatInputModule, MatDialog } from '@angular/material';
+
 
 @NgModule({
   declarations: [LoginComponent],
