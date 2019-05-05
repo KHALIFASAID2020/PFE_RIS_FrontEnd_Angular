@@ -1,44 +1,71 @@
-<div class="mb-20" fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
-  <div fxFlex>
-    <mat-card>
-      <mat-card-header>
-          <mat-card-title>Form Field</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-          <mat-form-field>
-             <input matInput placeholder="Input">
+
+
+
+<!-- Page content -->
+<div class="basic-container">
+  <mat-card>
+    <!-- Page form start -->
+    <form [formGroup]="exampleForm" novalidate (ngSubmit)="save(exampleForm.value)" >
+    <mat-card-title>User Registration</mat-card-title>
+    <mat-card-content>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
+
+          <!-- Comapny name input field -->
+          <mat-form-field class="example-full-width" fxFlex="75%">
+            <input matInput placeholder="Company name" formControlName="companyName" required>
+            <!-- input field hint -->
+            <mat-hint align="end">
+              Can contain only characters.
+            </mat-hint>
+            <!-- input field error -->
+            <mat-error *ngIf="exampleForm.controls.companyName.invalid">
+              <span [hidden]="!exampleForm.controls['companyName'].errors.required">
+                This field is required.
+              </span>
+              <span [hidden]="!exampleForm.controls['companyName'].errors.maxlength">
+                Maximmum alowed charactes are 25
+              </span>
+            </mat-error>
           </mat-form-field>
 
-          <mat-form-field>
-              <textarea matInput placeholder="Textarea"></textarea>
+          <!-- Country input field -->
+          <mat-form-field class="example-full-width" >
+            <input matInput placeholder="Country" formControlName="countryName">
+            <mat-hint align="end">Your IP country name loaded from ipapi.co/json/</mat-hint>
           </mat-form-field>
 
-          <mat-form-field>
-              <mat-select placeholder="Select">
-                  <mat-option value="option">Option</mat-option>
-              </mat-select>
+        </div>
+
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="center" layout-margin>
+
+          <!-- Street input field -->
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Street" fxFlex="75%" formControlName="street">
           </mat-form-field>
-      </mat-card-content>
+
+          <!-- City input field -->
+          <mat-form-field class="example-full-width" >
+            <input matInput placeholder="City" formControlName="city">
+            <mat-hint align="end">City name loaded from ipapi.co/json/</mat-hint>
+          </mat-form-field>
+
+          <!-- Zip code input field -->
+          <mat-form-field class="example-full-width" fxFlex="20%">
+            <input matInput placeholder="Zip" formControlName="zipCode">
+            <mat-hint align="end">Zip loaded from ipapi.co/json/</mat-hint>
+          </mat-form-field>
+
+      </div>
+
+      <!-- Total price calculation formated with angular currency pipe -->
+      <mat-card>
+
+      </mat-card>
+    </mat-card-content>
+
+    <!-- Form submit button enabled on if form is valid -->
+    <mat-card-actions><button mat-button [disabled]="exampleForm.invalid">Submit</button></mat-card-actions>
+    </form> <!-- Page form end -->
   </mat-card>
 
-
-  </div>
-  <div fxFlex>
-     2
-  </div>
-</div>
-<div class="mb-20" fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="20px">
-  <div fxFlex>
-
-      3
-  </div>
-  <div fxFlex>
-     4
-  </div>
-</div>
-
-<div fxFlex fxLayout="row" fxLayout.lt-md="column">
-  <div fxFlex>
-     5
-  </div>
 </div>

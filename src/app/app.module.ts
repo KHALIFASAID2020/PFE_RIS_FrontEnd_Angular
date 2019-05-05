@@ -9,6 +9,7 @@ import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {JwtInterceptor} from './login/jwt.interceptor';
 import { ErrorInterceptor } from './login/error.interceptor';
@@ -28,6 +29,7 @@ export const createTranslateLoader = (http: HttpClient) => {
 
   ],
   imports: [
+    FlexLayoutModule,
     ReactiveFormsModule,
     FormsModule,
     BrowserModule,
