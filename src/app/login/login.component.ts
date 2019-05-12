@@ -30,9 +30,6 @@ error ='';
     this.authService.Login(form.value.email,form.value.password).pipe(first()).subscribe(
         data => {
           this.router.navigate([this.returnUrl]);
-       // console.log(data);
-//C:\ProjetPFE\PFE-Node-Api-RIS
-//https://stackblitz.com/edit/angular-reactive-form-sobsoft
         },error =>{
           this.error =error;
         }

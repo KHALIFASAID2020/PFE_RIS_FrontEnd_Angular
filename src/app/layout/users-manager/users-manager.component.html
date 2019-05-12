@@ -1,71 +1,113 @@
-
-
+<script src="https://raw.github.com/bermi/password-generator/master/dist/password-generator.min.js" type="text/javascript"></script>
 
 <!-- Page content -->
 <div class="basic-container">
   <mat-card>
     <!-- Page form start -->
-    <form [formGroup]="exampleForm" novalidate (ngSubmit)="save(exampleForm.value)" >
-    <mat-card-title>User Registration</mat-card-title>
-    <mat-card-content>
-        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
+              <form #userForm="ngForm" novalidate (ngSubmit)="onSaveUser(userForm)" >
+              <mat-card-title>User Registration</mat-card-title>
+              <mat-card-content>
+              <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
+                <!-- Comapny name input field -->
 
-          <!-- Comapny name input field -->
-          <mat-form-field class="example-full-width" fxFlex="75%">
-            <input matInput placeholder="Company name" formControlName="companyName" required>
-            <!-- input field hint -->
-            <mat-hint align="end">
-              Can contain only characters.
-            </mat-hint>
-            <!-- input field error -->
-            <mat-error *ngIf="exampleForm.controls.companyName.invalid">
-              <span [hidden]="!exampleForm.controls['companyName'].errors.required">
-                This field is required.
-              </span>
-              <span [hidden]="!exampleForm.controls['companyName'].errors.maxlength">
-                Maximmum alowed charactes are 25
-              </span>
-            </mat-error>
-          </mat-form-field>
 
-          <!-- Country input field -->
-          <mat-form-field class="example-full-width" >
-            <input matInput placeholder="Country" formControlName="countryName">
-            <mat-hint align="end">Your IP country name loaded from ipapi.co/json/</mat-hint>
-          </mat-form-field>
+                <mat-form-field class="example-full-width" fxFlex="75%">
+                  <input matInput placeholder="Last Name User" [(ngModel)]="usermanagerservice.selectedUser.lastanme" name="lastname" #lastname="ngModel" required>
+                  <!-- input field hint -->
+                  <mat-hint align="end">
+                    Can contain only characters.
+                  </mat-hint>
+                  <!-- input field error -->
+                </mat-form-field>
 
-        </div>
+                <mat-form-field class="example-full-width" >
+                  <input matInput placeholder="Last Name" [(ngModel)]="usermanagerservice.selectedUser.firstname" name="firstname" #firstname="ngModel" required >
+                  <mat-hint align="end">Can contain only characters.</mat-hint>
+                </mat-form-field>
+              </div>
 
-        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="center" layout-margin>
 
-          <!-- Street input field -->
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Street" fxFlex="75%" formControlName="street">
-          </mat-form-field>
 
-          <!-- City input field -->
-          <mat-form-field class="example-full-width" >
-            <input matInput placeholder="City" formControlName="city">
-            <mat-hint align="end">City name loaded from ipapi.co/json/</mat-hint>
-          </mat-form-field>
+              <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="center" layout-margin>
 
-          <!-- Zip code input field -->
-          <mat-form-field class="example-full-width" fxFlex="20%">
-            <input matInput placeholder="Zip" formControlName="zipCode">
-            <mat-hint align="end">Zip loaded from ipapi.co/json/</mat-hint>
-          </mat-form-field>
 
-      </div>
 
-      <!-- Total price calculation formated with angular currency pipe -->
-      <mat-card>
+                <mat-form-field>
+                  <mat-label>Company Name</mat-label>
+                  <mat-select fxFlex="75%" [(ngModel)]="usermanagerservice.selectedUser.companyId" name="companyId" #companyId="ngModel" required>
+                    <mat-option *ngFor="let comp of company" [value]="comp._id">
+                      {{comp.companyName}}
+                    </mat-option>
 
-      </mat-card>
-    </mat-card-content>
+                  </mat-select>
+                  <mat-hint align="end">Company Name </mat-hint>
 
-    <!-- Form submit button enabled on if form is valid -->
-    <mat-card-actions><button mat-button [disabled]="exampleForm.invalid">Submit</button></mat-card-actions>
-    </form> <!-- Page form end -->
+                </mat-form-field>
+
+                <!-- City input field -->
+                <mat-form-field class="example-full-width" >
+                  <input matInput placeholder="Post" [(ngModel)]="usermanagerservice.selectedUser.poste" name="poste" #poste="ngModel" required>
+                  <mat-hint align="end">Post User</mat-hint>
+                </mat-form-field>
+
+                <!-- Zip code input field -->
+                <mat-form-field class="example-full-width" fxFlex="20%">
+                  <input matInput placeholder="Phone" [(ngModel)]="usermanagerservice.selectedUser.phone" name="phone" #phone="ngModel" required>
+                  <mat-hint align="end">Phone User</mat-hint>
+                </mat-form-field>
+
+              </div>
+
+             </mat-card-content>
+
+
+
+             <mat-card-title>User Account</mat-card-title>
+             <mat-card-content>
+             <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
+
+               <!-- Comapny name input field -->
+               <mat-form-field class="example-full-width" fxFlex="75%">
+                 <input matInput placeholder="User E-mail" [(ngModel)]="usermanagerservice.selectedUser.email" name="email" #email="ngModel"  required email>
+
+                 <!-- input field hint -->
+                 <mat-hint align="end"> email User</mat-hint>
+
+               </mat-form-field>
+
+               <!-- Country input field -->
+               <mat-form-field class="example-full-width" >
+                 <input matInput placeholder="Password"  [(ngModel)]="usermanagerservice.selectedUser.password" name="password" #password="ngModel"  required>
+                 <mat-hint align="end">Password User.</mat-hint>
+
+
+
+               </mat-form-field>
+
+
+
+
+               <mat-form-field>
+                <mat-label>Rules User</mat-label>
+                <mat-select  placeholder="Rules"  [(ngModel)]="usermanagerservice.selectedUser.role" name="role" #role="ngModel"  required>
+                  <mat-option *ngFor="let role of roles" [value]="role.valueRole">
+                    {{role.viewValueRole}}
+                  </mat-option>
+
+                </mat-select>
+                <mat-hint align="end">Role User </mat-hint>
+
+              </mat-form-field>
+
+
+             </div>
+
+
+           </mat-card-content>
+
+
+          <mat-card-actions><button mat-flat-button  type="submit" [disabled]="!userForm.valid"  color="primary" >Add New User</button>   <button mat-flat-button color="primary"  (click)="resetForm(userForm)"  color="primary" >Reset Form</button></mat-card-actions>
+          </form> <!-- Page form end -->
   </mat-card>
 
 </div>

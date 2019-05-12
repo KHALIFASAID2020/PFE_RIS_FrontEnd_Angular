@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl: 'http://192.168.137.1:3000/users';
+  private baseUrl: 'http://localhost:3000/users';
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>
 
@@ -24,7 +24,7 @@ export class AuthService {
 
   Login(email: string, password: string){
 
-return this.http.post<any>(`http://192.168.137.1:3000/users/authenticate`, {email, password})
+return this.http.post<any>(`http://localhost:3000/users/authenticate`, {email, password})
 .pipe(map(user=>{
   if(user && user.token){
     localStorage.setItem('currentUser', JSON.stringify(user));
