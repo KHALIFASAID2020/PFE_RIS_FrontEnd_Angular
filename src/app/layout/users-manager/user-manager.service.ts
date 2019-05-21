@@ -1,39 +1,41 @@
 import { Injectable } from '@angular/core';
 import {User} from './user.model';
 import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { environment } from './../../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserManagerService {
 selectedUser: User;
-users: User[];
-readonly baseURL= 'http://localhost:3000/users';
-private baseUrlListCompany='http://localhost:3000/company'
+
 
   constructor(private http: HttpClient) { }
 
-  RegisterUser(user: User){
-    return this.http.post(this.baseURL + '/signup', user);
-  }
-/*
-  getUserList(){
-    return this.http.get(this.baseURL);
+  private createCompleteRoute(route: string, envAddress: string) {
+    return `${envAddress}/${route}`;
   }
 
- putUser(user:User,_id:string){
-    return this.http.put(this.baseURL+`/${_id}`, user);
+  public getData(route: string) {
+    return this.http.get(this.createCompleteRoute(route, environment.urlAddress));
   }
 
-  deleteEmployee(_id:string){
-    return this.http.delete(this.baseURL+ `/${_id}`);
-  } */
+  public delete(route: string){
+    return this.http.delete(this.createCompleteRoute(route, environment.urlAddress));
+  }
 
-  getlistComany() {
-  //return this.http.get(this.baseUrlListCompany + '/');
-  //return this.http.get(`http://localhost:3000/users`);
+public createUser (route: string, body) {
+  return this.http.post(this.createCompleteRoute(route, environment.urlAddress), body);
+}
+getlistComany() {
+
   return this.http.get<any[]>(`http://localhost:3000/company`);
 
 
 }
+
 }

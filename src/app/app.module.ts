@@ -13,6 +13,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {JwtInterceptor} from './login/jwt.interceptor';
 import { ErrorInterceptor } from './login/error.interceptor';
+
 export const createTranslateLoader = (http: HttpClient) => {
   /* for development
   return new TranslateHttpLoader(
@@ -25,7 +26,7 @@ export const createTranslateLoader = (http: HttpClient) => {
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
 
   ],
   imports: [

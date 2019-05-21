@@ -7,6 +7,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {MatCardModule, MatAutocompleteModule,
   MatButtonModule,
+  MatPaginatorModule,
   MatButtonToggleModule,
   MatCheckboxModule,
   MatChipsModule,
@@ -33,13 +34,15 @@ import {MatCardModule, MatAutocompleteModule,
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule} from '@angular/material';
+import { UserModalComponent } from './user-modal/user-modal.component';
+
 @NgModule({
-  declarations: [UsersManagerComponent],
+  declarations: [UsersManagerComponent, UserModalComponent],
   imports: [
     CommonModule,UsersMangerRoutingModule,MatCardModule,FormsModule,ReactiveFormsModule, MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,FlexLayoutModule,
-    MatCardModule,
+    MatCardModule,MatPaginatorModule,
     MatCheckboxModule,
     MatChipsModule,
     MatDatepickerModule,
@@ -65,6 +68,7 @@ import {MatCardModule, MatAutocompleteModule,
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule
-  ]
+  ],  entryComponents: [UserModalComponent],
+
 })
 export class UserManagerModule { }

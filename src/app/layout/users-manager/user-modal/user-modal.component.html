@@ -1,0 +1,115 @@
+<div class="basic-container">
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card fxFlex="900px" fxFlex.xs="80%" >
+    <mat-card-title>Create a new User</mat-card-title>
+    <form [formGroup]="userForm" autocomplete="off" novalidate (ngSubmit)="createOwner(userForm.value)" fxLayout="column wrap"
+      fxLayoutAlign="center center" fxLayoutGap="10px">
+      <mat-card-content>
+
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
+              <!-- Comapny name input field -->
+
+
+              <mat-form-field class="example-full-width" fxFlex="50%">
+                  <input matInput type="text" placeholder="User email" formControlName="email" id="email" email>
+                  <mat-hint align="end">Not more then 60 characters long.</mat-hint>
+                  <mat-error *ngIf="hasError('email', 'required')">Email is required</mat-error>
+                  <mat-error *ngIf="hasError('email', 'maxlength')">You have more than 60 characters</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width" fxFlex="50%">
+                    <input matInput type="text" placeholder="User password" formControlName="password" id="password">
+                    <mat-hint align="end">Not more then 60 characters long.</mat-hint>
+                    <mat-error *ngIf="hasError('password', 'required')">Password is required</mat-error>
+                    <mat-error *ngIf="hasError('password', 'maxlength')">You have more than 60 characters</mat-error>
+                  </mat-form-field>
+            </div>
+
+
+
+
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
+
+
+          <mat-form-field>
+              <input matInput type="text" placeholder="User lastname" formControlName="lastname" id="lastanme">
+              <mat-hint align="end">Not more then 60 characters long.</mat-hint>
+              <mat-error *ngIf="hasError('lastname', 'required')">Password is required</mat-error>
+              <mat-error *ngIf="hasError('lastname', 'maxlength')">You have more than 60 characters</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput type="text" placeholder="User firstname" formControlName="firstname" id="firstname">
+                <mat-hint align="end">Not more then 60 characters long.</mat-hint>
+                <mat-error *ngIf="hasError('firstname', 'required')">Password is required</mat-error>
+                <mat-error *ngIf="hasError('firstname', 'maxlength')">You have more than 60 characters</mat-error>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
+
+
+
+
+                <mat-form-field>
+                  <mat-select   placeholder="company"  formControlName="companyId" id="companyId" >
+                    <mat-option *ngFor="let comp of company" [value]="comp._id">
+                      {{comp.companyName}}
+                    </mat-option>
+
+                  </mat-select>
+                  <mat-hint align="end">Company Name </mat-hint>
+                  <mat-error *ngIf="hasError('companyId', 'required')">Company is required</mat-error>
+
+                </mat-form-field>
+
+
+                <mat-form-field>
+                    <input matInput type="text" placeholder="User's poste" formControlName="poste" id="poste">
+                    <mat-hint align="end">Not more then 60 characters long.</mat-hint>
+                    <mat-error *ngIf="hasError('poste', 'required')">Password is required</mat-error>
+                    <mat-error *ngIf="hasError('poste', 'maxlength')">You have more than 60 characters</mat-error>
+                  </mat-form-field>
+                  </div>
+                  <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
+
+                    <mat-form-field>
+
+                      <mat-select  placeholder="Rules"  formControlName="role" id="role" >
+                        <mat-option *ngFor="let role of roles" [value]="role.valueRole">
+                          {{role.viewValueRole}}
+                        </mat-option>
+
+                      </mat-select>
+                      <mat-hint align="end">Role User </mat-hint>
+
+                    </mat-form-field>
+
+
+
+
+
+
+
+
+
+
+
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="User's poste" formControlName="phone" id="phone">
+                        <mat-hint align="end">Not more then 60 characters long.</mat-hint>
+                        <mat-error *ngIf="hasError('phone', 'required')">Password is required</mat-error>
+                        <mat-error *ngIf="hasError('phone', 'maxlength')">You have more than 60 characters</mat-error>
+                      </mat-form-field>
+                      </div>
+
+      </mat-card-content>
+      <mat-card-actions align="center">
+        <button mat-raised-button color="primary" [disabled]="!userForm.valid">Create</button>
+        <button type="button" mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</section>
+
+</div>
+
