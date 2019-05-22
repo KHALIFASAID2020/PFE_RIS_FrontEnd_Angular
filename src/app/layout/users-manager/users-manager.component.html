@@ -1,3 +1,4 @@
+
 <div fxLayout fxLayout.lt-md="column wrap" fxLayoutAlign="center center" fxLayoutGap.gt-sm="250px" fxLayoutGap.lt.md="20px">
     <mat-form-field>
       <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
@@ -9,6 +10,8 @@
     </div>
   </div>
   <!-- 'Name', 'Company', 'Company type' , 'Poste', 'Email', 'Phone','Role' -->
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+
   <table mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="Name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>

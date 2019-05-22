@@ -6,6 +6,7 @@ import {User} from './user.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
 import { UserModalComponent } from './user-modal/user-modal.component';
+import { SucessdialogComponent } from './sucessdialog/sucessdialog.component';
 
 export interface Role{
   valueRole : string;
@@ -34,13 +35,21 @@ export class UsersManagerComponent implements OnInit,AfterViewInit{
   ];
   users: any[] = [];
   company: any[] = [];
+  private dialogConfigdelete;
+  isLoading = false;
 
   isPopupOpened = true;
 
   constructor(private usermanagerservice : UserManagerService,private dialog?: MatDialog) { }
 
   ngOnInit() {
-
+    this.dialogConfigdelete = {
+      height: '200px',
+      width: '400px',
+      disableClose: true,
+      data: {}
+    }
+    this.isLoading = true;
 
     this.getAllUsers();
 
@@ -61,6 +70,8 @@ export class UsersManagerComponent implements OnInit,AfterViewInit{
   public getAllUsers = () => {
     this.usermanagerservice.getData('users/')
     .subscribe(res => {
+   this.isLoading = false;
+
      this.dataSource.data = res as User[];
     console.log(res);
 
@@ -103,27 +114,25 @@ export class UsersManagerComponent implements OnInit,AfterViewInit{
 
 
 
+
+
+
   public deleteOwner = (id: string) => {
     let deleteUrl: string = `users/${id}`;
-
-
-
     this.usermanagerservice.delete(deleteUrl)
       .subscribe(res => {
-
         console.log('User deleted');
-      //  this.dialog.open(SuccessDialogComponent,this.dialogConfig);
-
-       /*  dialogRef.afterClosed()
+        let dialogRef = this.dialog.open(SucessdialogComponent, this.dialogConfigdelete);
+        dialogRef.afterClosed()
           .subscribe(result => {
-            this.location.back();
-          }); */
+            this.getAllUsers();
+          });
       },
       (error) => {
         //this.errorService.dialogConfig = this.dialogConfig;
       // this.errorService.handleError(error);
        console.log(error);
-      })
+      });
   }
 
 

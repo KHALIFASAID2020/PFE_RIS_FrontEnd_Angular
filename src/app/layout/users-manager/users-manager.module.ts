@@ -35,9 +35,10 @@ import {MatCardModule, MatAutocompleteModule,
   MatToolbarModule,
   MatTooltipModule} from '@angular/material';
 import { UserModalComponent } from './user-modal/user-modal.component';
+import { SucessdialogComponent } from './sucessdialog/sucessdialog.component';
 
 @NgModule({
-  declarations: [UsersManagerComponent, UserModalComponent],
+  declarations: [UsersManagerComponent, UserModalComponent, SucessdialogComponent],
   imports: [
     CommonModule,UsersMangerRoutingModule,MatCardModule,FormsModule,ReactiveFormsModule, MatAutocompleteModule,
     MatButtonModule,
@@ -68,7 +69,7 @@ import { UserModalComponent } from './user-modal/user-modal.component';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule
-  ],  entryComponents: [UserModalComponent],
+  ],  entryComponents: [UserModalComponent,SucessdialogComponent],
 
 })
 export class UserManagerModule { }

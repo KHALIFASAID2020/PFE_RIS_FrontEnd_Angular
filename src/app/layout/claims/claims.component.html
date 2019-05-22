@@ -1,3 +1,131 @@
-<p>
-  complaint works!
-</p>
+<section fxLayout="row wrap" fxLayoutAlign="left left">
+  <mat-card fxFlex="1080px" fxFlex.xs="100%">
+    <mat-card-title>Create a new Complaint</mat-card-title>
+    <form [formGroup]="complaintForm" autocomplete="off" novalidate (ngSubmit)="createUser()" fxLayout="column full"
+      fxLayoutAlign="left left" fxLayoutGap="10px">
+      <mat-card-content>
+
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
+              <!-- Comapny name input field -->
+
+
+              <mat-form-field class="example-full-width" fxFlex="50%">
+                  <input matInput type="text" placeholder="Complaint Ref"   formControlName="refcomplaint" id="refcomplaint"  >
+                  <mat-hint align="end">Complaint Ref</mat-hint>
+                    </mat-form-field>
+
+
+
+
+                    <mat-form-field class="example-full-width" fxFlex="50%" >
+                      <mat-select    placeholder="Type Complaint"   formControlName="typecomplaint" id="typecomplaint"  >
+                        <mat-option *ngFor="let comp of listTypeCompany" [value]="comp._id">
+                          {{comp.type_company}}
+                        </mat-option>
+
+                      </mat-select>
+                      <mat-hint align="end">Company Type </mat-hint>
+
+                    </mat-form-field>
+
+               <!--  <mat-form-field class="example-full-width" fxFlex="50%">
+                    <input matInput type="text" placeholder="Type Complaint"  formControlName="typecomplaint" id="typecomplaint">
+                    <mat-hint align="end">Complaint Type.</mat-hint>
+                        </mat-form-field> -->
+
+                 <mat-form-field class="example-full-width" fxFlex="50%">
+                    <input matInput type="text" placeholder="Product" formControlName="product" id="product">
+                    <mat-hint align="end">Product WISI N°.</mat-hint>
+                        </mat-form-field>
+
+
+
+                 <mat-form-field class="example-full-width" fxFlex="50%">
+                    <input matInput type="text" placeholder="Company" formControlName="company" id="company">
+                    <mat-hint align="end">Complaint Company.</mat-hint>
+                        </mat-form-field>
+            </div>
+
+
+
+
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
+              <!-- Comapny name input field -->
+
+
+              <mat-form-field class="example-full-width" fxFlex="40%">
+                  <input matInput type="text" placeholder="Complaint Fault"   formControlName="defautcomplaint" id="defautcomplaint"  >
+                  <mat-hint align="end">Complaint Fault</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width" fxFlex="10%">
+                      <input matInput type="number" placeholder="Quantity Fault"   formControlName="defautquantity" id="defautquantity"  >
+                      <mat-hint align="end">Complaint Fault</mat-hint>
+                        </mat-form-field>
+
+
+            </div>
+
+
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
+              <!-- Comapny name input field -->
+
+
+              <mat-form-field class="example-full-width"  fxFlex="100%">
+
+
+
+
+                    <textarea matInput placeholder="Leave a comment" rows="4"  placeholder="Complaint Description"   formControlName="descriptioncomplaint" id="descriptioncomplaint"></textarea>
+                  <mat-hint align="end">Complaint Description</mat-hint>
+
+                </mat-form-field>
+
+
+            </div>
+
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
+              <!-- Comapny name input field -->
+
+
+
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker"  placeholder="Choose a date" placeholder="Choose a date of reponse" formControlName="dateOfResponse" id="dateOfResponse">
+                <mat-datepicker-toggle matSuffix  [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                                  <mat-hint align="end">Date of Response</mat-hint>
+
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker2" placeholder="Choose a date" placeholder="Choose a date of deadline" formControlName="dateOfDeadline" id="dateOfDeadline">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+                                                <mat-hint align="end">Date of DeadLine</mat-hint>
+<mat-error *ngIf="complaintForm.hasError(complaintForm.value.dateOfResponse>complaintForm.value.dateOfDeadline)">
+
+</mat-error>
+
+          </mat-form-field>
+
+
+            </div>
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
+
+              <mat-form-field class="example-full-width" fxFlex="40%">
+                  <input matInput type="text" placeholder="Complaint Destination"   formControlName="destinationcomplaint" id="destinationcomplaint"  >
+                  <mat-hint align="end">Complaint Destination</mat-hint>
+                    </mat-form-field>
+
+
+            </div>
+
+
+
+      </mat-card-content>
+      <mat-card-actions align="center">
+        <button mat-raised-button color="primary" [disabled]="!complaintForm.valid">Create</button>
+        <button mat-raised-button color="warn" [disabled]="!complaintForm.valid">Send</button>
+
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</section>

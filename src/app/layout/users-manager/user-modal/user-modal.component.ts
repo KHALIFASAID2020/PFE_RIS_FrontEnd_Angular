@@ -30,7 +30,8 @@ export class UserModalComponent implements OnInit {
 
   public userForm: FormGroup;
  // private dialogConfig;
-  constructor(  private location: Location,private dialogRef: MatDialogRef<UserModalComponent>,@Inject(MAT_DIALOG_DATA) public data: any,private usermanagerservice: UserManagerService) { }
+  constructor(  private location: Location,
+    private dialogRef: MatDialogRef<UserModalComponent>,@Inject(MAT_DIALOG_DATA) public data: any,private usermanagerservice: UserManagerService) { }
 
   onNoClick(): void {
     this.dialogRef.close();
