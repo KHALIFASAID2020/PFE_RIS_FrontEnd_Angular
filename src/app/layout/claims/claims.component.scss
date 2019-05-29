@@ -1,11 +1,11 @@
 mat-form-field{
     width: 400px;
   }
-  
+
   mat-card-title{
     text-align: center;
   }
-  
+
   .card {
     width: 100%;
   }
@@ -20,48 +20,48 @@ mat-form-field{
     font-weight: 400;
     src: url(https://fonts.gstatic.com/s/materialicons/v36/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
   }
-  
+
   :host {
     display: block;
     margin-top: 1rem;
   }
-  
+
   mat-spinner {
     margin: auto;
   }
-  
+
   mat-paginator {
     margin-top: 1rem;
   }
-  
+
   .info-text {
     text-align: center;
   }
-  
+
   .post-image {
     width: 100%;
   }
-  
+
   .post-image img {
     width: 100%;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
   }
-  
+
   .table {
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
   }
-  
+
   .th.mat-header-cell {
     text-align: left;
     max-width: 300px!important;
   }
-  
-  
-  
-  
-  
+
+
+
+
+
   .material-icons {
     font-family: 'Material Icons';
     font-weight: normal;
@@ -80,18 +80,30 @@ mat-form-field{
   p {
     font-family: Lato;
   }
-  
+  .image-preview {
+    height: 5rem;
+    margin: 1rem 0;
+  }
+
+  .image-preview img {
+    height: 100%;
+  }
+
+  input[type="file"] {
+    visibility: hidden;
+  }
+
+
   body {
     font-family: Roboto, Arial, sans-serif;
     margin: 0;
   }
-  
+
   .basic-container {
     padding: 10px;
   }
-  
+
   .example-full-width {
     width: 100%;
     margin-bottom: 10px;
   }
-  

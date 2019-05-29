@@ -26,6 +26,19 @@
      <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/users']" *ngIf="isAdmin">
         <mat-icon class="sidenav-icon">insert_chart</mat-icon> {{ 'Users' | translate }}
     </a>
+
+    <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/catalogfaults']" *ngIf="isAdmin">
+      <mat-icon class="sidenav-icon">insert_chart</mat-icon> {{ 'Catalog Of faults' | translate }}
+  </a>
+  <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/actiontype']" *ngIf="isAdmin">
+    <mat-icon class="sidenav-icon">insert_chart</mat-icon> {{ 'Action Type' | translate }}
+  </a>
+  <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/company']" *ngIf="isAdmin">
+  <mat-icon class="sidenav-icon">insert_chart</mat-icon> {{ 'Company' | translate }}
+  </a>
+
+
+    <!-- catalogfaults -->
      <!--  <div class="nested-menu">
           <a mat-list-item (click)="addExpandClass('pages')">
               <mat-icon class="sidenav-icon">add</mat-icon> Menu

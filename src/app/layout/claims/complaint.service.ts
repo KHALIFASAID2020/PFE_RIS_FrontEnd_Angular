@@ -20,6 +20,18 @@ export class ComplaintService {
   }
 
 
+  public  CompanyByTypeCompany(route: string) {
+    return this.http.get(this.createCompleteRoute(route, environment.urlAddress));
+   }
+
+
+   public  getByIdCompanyProduit(route: string) {
+    return this.http.get(this.createCompleteRoute(route, environment.urlAddress));
+   }
+
+  public getAllFault(route: string) {
+    return this.http.get(this.createCompleteRoute(route, environment.urlAddress));
+  }
 
   private createCompleteRoute(route: string, envAddress: string) {
     return `${envAddress}/${route}`;

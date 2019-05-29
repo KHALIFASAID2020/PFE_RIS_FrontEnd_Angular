@@ -42,7 +42,18 @@ const routes: Routes = [
           {
             path: 'users',
             loadChildren: './users-manager/users-manager.module#UserManagerModule'
+          },
+          {
+            path: 'catalogfaults',
+            loadChildren: './catalogfaults/catalogfaults.module#CatalogfaultsModule'
+          },{
+            path: 'actiontype',
+            loadChildren: './action-type/action-type.module#ActiontypeModule'
+          },{
+            path: 'company',
+            loadChildren: './company/company.module#CompanyModule'
           }
+          //ActiontypeModule
         ]
   }
 ];

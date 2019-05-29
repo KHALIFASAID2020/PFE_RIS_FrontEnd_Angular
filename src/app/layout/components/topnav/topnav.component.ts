@@ -27,7 +27,9 @@ email: string;
 
 
   changeLang(language: string) {
+
     this.translate.use(language);
+
 }
 onLoggedout(){
   this.authService.logout();

@@ -11,6 +11,9 @@ import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+
+import { ToastrModule } from 'ngx-toastr';
+
 import {JwtInterceptor} from './login/jwt.interceptor';
 import { ErrorInterceptor } from './login/error.interceptor';
 
@@ -37,7 +40,8 @@ export const createTranslateLoader = (http: HttpClient) => {
     AppRoutingModule,
     LayoutModule,
     OverlayModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(),
             HttpClientModule,
 
     TranslateModule.forRoot({
@@ -45,7 +49,8 @@ export const createTranslateLoader = (http: HttpClient) => {
           provide: TranslateLoader,
           useFactory: createTranslateLoader,
           deps: [HttpClient]
-      }
+      },
+
   }),
 
 
