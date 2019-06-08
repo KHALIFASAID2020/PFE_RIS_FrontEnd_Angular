@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder, FormGroupDirective, Validators, FormControl, NgForm } from '@angular/forms';
-import { Icompany } from './iCompany';
 
 @Component({
   selector: 'app-company',

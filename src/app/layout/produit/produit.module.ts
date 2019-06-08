@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { ProduitComponent } from './produit.component';
+import { ProduitRoutingModule } from './produit-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 
-import { ClaimsComponent } from './claims.component';
-import { ClaimsRoutingModule } from './claims-routing.module';
 import {MatCardModule, MatAutocompleteModule,
   MatButtonModule,
   MatPaginatorModule,
@@ -34,20 +34,20 @@ import {MatCardModule, MatAutocompleteModule,
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule} from '@angular/material';
-import { ComplaintService } from './complaint.service';
-import { DetailsComponent } from './details/details.component';
-import { UpdateComponent } from './update/update.component';
-import { ListClaimsComponent } from './list-claims/list-claims.component';
+import { ProduitService } from './produit.service';
 @NgModule({
-  declarations: [ClaimsComponent, DetailsComponent, UpdateComponent, ListClaimsComponent],
+  declarations: [ProduitComponent],
   imports: [
-    CommonModule, ClaimsRoutingModule,MatButtonModule,
+    CommonModule,ProduitRoutingModule,
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
+    CommonModule,FormsModule,ReactiveFormsModule,
+    MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,MatPaginatorModule,
     MatCheckboxModule,
     MatChipsModule,
     MatDatepickerModule,FlexLayoutModule,
-    MatDialogModule,FormsModule,ReactiveFormsModule,
+    MatDialogModule,
     MatExpansionModule,
     MatGridListModule,
     MatIconModule,
@@ -69,7 +69,6 @@ import { ListClaimsComponent } from './list-claims/list-claims.component';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule
-  ],  providers: [ComplaintService]
-
+  ],providers: [ProduitService]
 })
-export class ClaimsModule { }
+export class ProduitModule { }

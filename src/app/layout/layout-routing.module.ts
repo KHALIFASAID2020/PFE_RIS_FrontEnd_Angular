@@ -53,6 +53,14 @@ const routes: Routes = [
             path: 'company',
             loadChildren: './company/company.module#CompanyModule'
           }
+          ,{
+            path: 'export',
+            loadChildren: './export/export.module#ExportModule'
+          }
+          ,{
+            path: 'produit',
+            loadChildren: './produit/produit.module#ProduitModule'
+          }
           //ActiontypeModule
         ]
   }

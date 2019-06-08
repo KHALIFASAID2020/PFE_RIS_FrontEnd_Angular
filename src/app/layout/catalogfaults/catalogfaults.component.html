@@ -3,22 +3,20 @@
   <section fxLayout="row wrap" fxLayoutAlign="left left">
     <mat-card fxFlex="1000px" fxFlex.xs="100%">
       <mat-card-title>Create a new Fault</mat-card-title>
-      <form #faultForm="ngForm" autocomplete="off" novalidate (ngSubmit)="createfault(faultForm)" fxLayout="column wrap"
+      <form #faultForm="ngForm" [formGroup]="checkFaultForm" (ngSubmit)="createfault(faultForm)"  autocomplete="off" novalidate  fxLayout="column wrap"
         fxLayoutAlign="left left" fxLayoutGap="10px">
         <mat-card-content>
           <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
 
           <mat-form-field class="example-full-width" fxFlex="20%">
 
-            <input matInput type="text" placeholder="Code Defaut" #name="ngModel"  [(ngModel)]="selectedFault.codeDefaut" name="codeDefaut" id="codeDefaut" required >
+            <input matInput type="text" placeholder="Code Defaut"   [(ngModel)]="selectedFault.codeDefaut" formControlName="codeDefaut"  required>
             <mat-hint align="end">Not more then 60 characters long.</mat-hint>
-            <!-- <mat-error *ngIf="hasError('name', 'required')">Name is required</mat-error>
-            <mat-error *ngIf="hasError('name', 'maxlength')">You have more than 60 characters</mat-error> -->
-          </mat-form-field>
+                </mat-form-field>
 
 
           <mat-form-field class="example-full-width" fxFlex="50%">
-            <input matInput type="text" placeholder="French Fault" #name="ngModel" [(ngModel)]="selectedFault.DesignationDefautEn" name="DesignationDefautEn" required >
+            <input matInput type="text" placeholder="French Fault"  [(ngModel)]="selectedFault.DesignationDefautEn"  formControlName="DesignationDefautEn" required >
             <mat-hint align="end">Not more then 100 characters long.</mat-hint>
             <!-- <mat-error *ngIf="hasError('address', 'required')">Address is required</mat-error>
             <mat-error *ngIf="hasError('address', 'maxlength')">You have more than 100 characters</mat-error>
@@ -26,7 +24,7 @@
 
 
           <mat-form-field class="example-full-width" fxFlex="50%">
-            <input matInput type="text" placeholder="English Fault" #name="ngModel" [(ngModel)]="selectedFault.DesignationDefautDe" name="DesignationDefautDe" required >
+            <input matNativeControl type="text" placeholder="English Fault"  [(ngModel)]="selectedFault.DesignationDefautDe"  formControlName="DesignationDefautDe" required >
             <mat-hint align="end">Not more then 100 characters long.</mat-hint>
           <!--   <mat-error *ngIf="hasError('address', 'required')">Address is required</mat-error>
             <mat-error *ngIf="hasError('address', 'maxlength')">You have more than 100 characters</mat-error>
@@ -34,7 +32,7 @@
 
 
           <mat-form-field class="example-full-width" fxFlex="50%">
-            <input matInput type="text" placeholder="Deautch Fault" #name="ngModel" [(ngModel)]="selectedFault.DesignationDefautFr" name="DesignationDefautFr" required>
+            <input matInput type="text" placeholder="Deautch Fault" [(ngModel)]="selectedFault.DesignationDefautFr"  formControlName="DesignationDefautFr" required>
             <mat-hint align="end">Not more then 100 characters long.</mat-hint>
          <!--    <mat-error *ngIf="hasError('address', 'required')">Address is required</mat-error>
             <mat-error *ngIf="hasError('address', 'maxlength')">You have more than 100 characters</mat-error>
@@ -44,7 +42,7 @@
           </div>
         </mat-card-content>
         <mat-card-actions align="center">
-          <button mat-raised-button color="primary" [disabled]="!faultForm.valid">Save</button>
+          <button mat-raised-button color="primary" type="submit"   [disabled]="checkFaultForm.invalid">Save</button>
         </mat-card-actions>
       </form>
     </mat-card>
@@ -95,11 +93,6 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Deautch Fault </th>
       <td mat-cell *matCellDef="let element"> {{element.DesignationDefautDe}} </td>
     </ng-container>
-
-
-
-
-
 
 
 

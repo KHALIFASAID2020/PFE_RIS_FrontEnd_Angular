@@ -3,7 +3,7 @@ import { environment } from './../../../environments/environment';
 import { Observable } from 'rxjs/';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PusherService } from './pusher.service';
-import { Ifault } from './ifault';
+import { fault } from './ifault';
 
 import { map } from 'rxjs/operators';
 
@@ -21,12 +21,12 @@ private _channel: any;
     return this._channel;
   }
 
- list(): Observable<Ifault[]> {
+ list(): Observable<fault[]> {
     return this._http.get(this.createCompleteRoute('defaut', environment.urlAddress)).pipe(
-    map(res => res as Ifault[]));
+    map(res => res as fault[]));
   }
 
-  create(route,body: Ifault) {
+  create(route,body: fault) {
    // return this._http.post('http://localhost:3000/defaut/AddDefaut', param);
     return this._http.post(this.createCompleteRoute(route, environment.urlAddress), body, this.generateHeaders());
   }

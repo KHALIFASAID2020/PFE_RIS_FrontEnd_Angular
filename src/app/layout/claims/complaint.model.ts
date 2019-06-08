@@ -8,5 +8,6 @@ export class Complaint {
   dateOfResponse: string;
   dateOfDeadline: string;
   destinationcomplaint: string;
-  defautquantity:number
+  defautquantity:number;
+  image:string
 }

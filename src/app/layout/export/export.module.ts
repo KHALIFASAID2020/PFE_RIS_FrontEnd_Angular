@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { ExportComponent } from './export.component';
+import { ExportRoutingModule } from './export-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 
-import { ClaimsComponent } from './claims.component';
-import { ClaimsRoutingModule } from './claims-routing.module';
 import {MatCardModule, MatAutocompleteModule,
   MatButtonModule,
   MatPaginatorModule,
@@ -34,20 +34,19 @@ import {MatCardModule, MatAutocompleteModule,
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule} from '@angular/material';
-import { ComplaintService } from './complaint.service';
-import { DetailsComponent } from './details/details.component';
-import { UpdateComponent } from './update/update.component';
-import { ListClaimsComponent } from './list-claims/list-claims.component';
+import { ExportService } from './export.service';
 @NgModule({
-  declarations: [ClaimsComponent, DetailsComponent, UpdateComponent, ListClaimsComponent],
+  declarations: [ExportComponent],
   imports: [
-    CommonModule, ClaimsRoutingModule,MatButtonModule,
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
+    CommonModule, ExportRoutingModule,FormsModule,ReactiveFormsModule,
+    MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,MatPaginatorModule,
     MatCheckboxModule,
     MatChipsModule,
     MatDatepickerModule,FlexLayoutModule,
-    MatDialogModule,FormsModule,ReactiveFormsModule,
+    MatDialogModule,
     MatExpansionModule,
     MatGridListModule,
     MatIconModule,
@@ -69,7 +68,7 @@ import { ListClaimsComponent } from './list-claims/list-claims.component';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule
-  ],  providers: [ComplaintService]
-
+  ],providers: [ExportService]
+  //ExportService
 })
-export class ClaimsModule { }
+export class ExportModule { }

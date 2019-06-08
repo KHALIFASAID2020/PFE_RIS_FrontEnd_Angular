@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
+import { FormGroup, Validators, FormControl, NgForm, FormGroupDirective, FormBuilder } from '@angular/forms';
 import {FaultService} from './fault.service';
-import {Ifault} from './ifault';
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { fault} from './ifault';
+import { MatTableDataSource, MatSort, MatPaginator, ErrorStateMatcher } from '@angular/material';
 import {ToastrService} from 'ngx-toastr';
 
 
@@ -14,22 +14,32 @@ import {ToastrService} from 'ngx-toastr';
 export class CatalogfaultsComponent implements OnInit {
 
   public displayedColumns = ['Code Defaut', 'French Fault', 'English Fault', 'Deautch Fault', 'update', 'delete'];
-  public dataSource = new MatTableDataSource<Ifault>();
+  public dataSource = new MatTableDataSource<fault>();
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
+  @ViewChild('faultForm') form;
+  errorState = false;
+  errorMatcher = new CustomErrorStateMatcher();
   isLoading = false;
 
+  checkFaultForm: FormGroup;
 
-  selectedFault: Ifault;
+  selectedFault: fault;
 
   public faultForm: NgForm;
-  faults: Ifault[] = [];
+  faults: fault[] = [];
   loading=true;
-  constructor(private _faultservice : FaultService,private toastr: ToastrService) { }
+  constructor(private _faultservice : FaultService,private formBuilder: FormBuilder,private toastr: ToastrService) { }
 
   ngOnInit() {
+
+    this.checkFaultForm  = this.formBuilder.group({
+      'codeDefaut': ['', Validators.required],
+      'DesignationDefautEn': ['', Validators.required],
+      'DesignationDefautDe': ['', Validators.required],
+      'DesignationDefautFr': ['', Validators.required]
+    });
 
    this.selectedFault = {
       _id:"",
@@ -52,13 +62,13 @@ export class CatalogfaultsComponent implements OnInit {
     this._faultservice.list().subscribe(faults=>{
       console.log(faults)
       this.loading=false;
-      this.dataSource.data = faults as Ifault[];
+      this.dataSource.data = faults;
 
       this.faults= faults;
     });
 }
 
-  onEdit(fault: Ifault) {
+  onEdit(fault: fault) {
     this.selectedFault = fault;
   }
   ngAfterViewInit(): void {
@@ -101,7 +111,7 @@ export class CatalogfaultsComponent implements OnInit {
     if (this.selectedFault._id == "") {
 console.log(this.selectedFault._id);
     this._faultservice.create(apiUrl, faultForm.value)
-    .subscribe((fault: Ifault)=>{
+    .subscribe((fault: fault)=>{
       this.toastr.success('Fault Created!', 'Fault Created!');
 
       this.isLoading = false;
@@ -133,7 +143,7 @@ console.log(this.selectedFault._id);
 
         console.log(faults)
         this.loading=false;
-        this.dataSource.data = faults as Ifault[];
+        this.dataSource.data = faults as fault[];
 
         this.faults= faults;
       });
@@ -144,6 +154,18 @@ console.log(this.selectedFault._id);
     //  M.toast({ html: 'Updated successfully', classes: 'rounded' });
     });
   }
+
+
+
+  if (!this.errorState) {
+    this.form.resetForm();
+  } else {
+    this.form.reset();
+  }
+
+  // this.checkForm.markAsPristine();
+  this.checkFaultForm.markAsUntouched();
+
     }
 
 
@@ -160,7 +182,7 @@ console.log(this.selectedFault._id);
           this._faultservice.list().subscribe(faults=>{
             console.log(faults)
             this.loading=false;
-            this.dataSource.data = faults as Ifault[];
+            this.dataSource.data = faults as fault[];
 
             this.faults= faults;
           });
@@ -171,4 +193,10 @@ console.log(this.selectedFault._id);
 
 
 
+}
+
+export class CustomErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl, form: NgForm | FormGroupDirective | null) {
+    return control && control.invalid && control.touched;
+  }
 }

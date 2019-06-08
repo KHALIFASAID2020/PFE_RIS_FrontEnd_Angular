@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ComplaintService } from './complaint.service';
+import { CompanyType } from '../company/CompanyType-model';
+import { Company } from '../company/iCompany';
+import { Produit } from '../produit/produit-model';
+import { fault } from '../catalogfaults/ifault';
+import {FileUploadModule} from 'primeng/fileupload';
+
 
 @Component({
   selector: 'app-claims',
@@ -8,15 +14,34 @@ import { ComplaintService } from './complaint.service';
   styleUrls: ['./claims.component.scss']
 })
 export class ClaimsComponent implements OnInit {
-//claimsForm
+  uploadedFiles: any[] = [];
+
   public complaintForm: FormGroup;
-  listCompanyType: {};
-  listCompany: {};
-  listProduit: {};
-  listDefaut: {};
+  listCompanyType: CompanyType[];
+  listCompany: Company[];
+  listProduit: Produit[];
+  listDefaut: fault[];
   constructor(private complaintService :ComplaintService) { }
+  onUpload(event) {
+    for(let file of event.files) {
+        this.uploadedFiles.push(file);
+        console.log(file);
+      }
 
 
+//    this.messageService.add({severity: 'info', summary: 'Success', detail: 'File Uploaded'});
+}
+/*  refReclamation:Joi.string().required(),
+        typecompanyId:Joi.string().required(),
+        produitId:Joi.string().required(),
+        description:Joi.string().required(),
+        daterep:Joi.string().required(),
+        datelimit:Joi.string().required(),
+        defautId:Joi.string().required(),
+        companyId:Joi.string().required(),
+        creatorId:Joi.string().required(),
+        destinationId:Joi.string().required(),
+        destinationencopy:Joi.string().required() */
   ngOnInit() {
      this.complaintForm = new FormGroup({
       refcomplaint: new FormControl('', [Validators.required, Validators.maxLength(60)]),
@@ -28,64 +53,35 @@ export class ClaimsComponent implements OnInit {
       dateOfResponse: new FormControl([Validators.required]),
       dateOfDeadline: new FormControl([Validators.required]),
       destinationcomplaint:new FormControl('', [Validators.required, Validators.maxLength(60)]),
-defautquantity:new FormControl('',[Validators.required]),
-/* image: new FormControl(null, {
-  validators: [Validators.required],
-  asyncValidators: [mimeType]
-}) */
+      defautquantity:new FormControl('',[Validators.required]),
+      image:new FormControl('',[Validators.required]),
+
     });
   this.getAllDefaut();
 
-    this.complaintService.getTypeCompany('typecompany/')
+  this.complaintService.getTypeCompany('typecompany/')
     .subscribe(result=>this.listCompanyType= result)
-   // this.BindCompany('5cd618fab9462327c832d57c');
   }
 
-/*   onImagePicked(event: Event) {
-    const file = (event.target as HTMLInputElement).files[0];
-    this.complaintForm.patchValue({ image: file });
-    this.complaintForm.get("image").updateValueAndValidity();
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.imagePreview = reader.result.toString();
-      console.log(this.imagePreview);
-    };
-    reader.readAsDataURL(file);
-  }
- */
 
 
   BindCompany(TypeCompanyId : string){
-    this.complaintService.CompanyByTypeCompany(`company/getCompanyByTypeCompany/${TypeCompanyId}`)
-    //http://localhost:3000/company/getCompanyByTypeCompany/
+    this.complaintService.CompanyByTypeCompany(`company/getByIdCompanyType/${TypeCompanyId}`)
     .subscribe(resultlistCompany=>this.listCompany=resultlistCompany);
-
-    //   return this.http.get(this.url + 'StateDetails/' + countryID).toPromise().then(result=>this.listState = result as State[])
-
-
-   // this.service.StateByCountry(countryId);
  }
 
  BindProduct(CompanyId : string){
-
+/*
   this.complaintService.getByIdCompanyProduit(`produit/getByIdCompanyProduit/${CompanyId}`)
-  //http://localhost:3000/company/getCompanyByTypeCompany/
-  .subscribe(resultlistProduit=>this.listProduit=resultlistProduit);
-
-  //   return this.http.get(this.url + 'StateDetails/' + countryID).toPromise().then(result=>this.listState = result as State[])
-
-
- // this.service.StateByCountry(countryId);
+  .subscribe(resultlistProduit=>this.listProduit=resultlistProduit); */
 }
 
-
-//listDefaut
 
 getAllDefaut(){
-  this.complaintService.getAllFault(`defaut/`).subscribe(result => this.listDefaut = result);
+   this.complaintService.getAllFault(`defaut/`).subscribe(result => this.listDefaut = result as fault[]);
 }
 
-  createUser(){
+createclamis(){
 
   }
 
