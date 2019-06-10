@@ -2,41 +2,35 @@
   <div class="basic-container">
     <section fxLayout="row wrap" fxLayoutAlign="left left">
       <mat-card fxFlex="1000px" fxFlex.xs="100%">
-        <mat-card-title>Create a new Product of Export</mat-card-title>
-        <form #ExportForm="ngForm" [formGroup]="checkExportForm"  (ngSubmit)="createExport(ExportForm)" autocomplete="off" novalidate  fxLayout="column wrap"
+        <mat-card-title>Create a new Commande</mat-card-title>
+        <form #CommandeForm="ngForm" [formGroup]="checkCommandeForm"  (ngSubmit)="createCommande(CommandeForm)" autocomplete="off" novalidate  fxLayout="column wrap"
           fxLayoutAlign="left left" fxLayoutGap="10px">
           <mat-card-content>
             <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="2%" fxLayoutAlign="left" >
 
             <mat-form-field class="form-group" fxFlex="15%" >
               <div class="form-group">
-                  <mat-select  required formControlName="produitId" placeholder="Produit"  [(ngModel)]="selectedExport.produit._id">
+                  <mat-select  required formControlName="produitId" placeholder="Produit"  [(ngModel)]="selectedCommande.produit._id">
                     <mat-option value="">Select Product...</mat-option>
                     <mat-option *ngFor="let prod of listProduit" [value]="prod._id">
                         {{prod.RefProduit}}
                       </mat-option>
                      </mat-select>
                 </div>
-                <mat-error *ngIf="checkExportForm.get('produitId').errors?.required">
-                  Prodcut is required.
-                </mat-error>
+
             <mat-hint align="end">Product WISI N°  </mat-hint>
 
           </mat-form-field>
-
-
-   <mat-form-field class="form-group" fxFlex="15%" >
+ <mat-form-field class="form-group" fxFlex="15%" >
               <div class="form-group">
-                  <select matNativeControl required formControlName="companyId" placeholder="Company" [(ngModel)]="selectedExport.company._id">
+                  <select matNativeControl required formControlName="companyId" placeholder="Company" [(ngModel)]="selectedCommande.company._id">
                     <option value="">Select Company...</option>
                     <option *ngFor="let company of listcompany"  [value]="company._id">
                         {{company.companyName}}
                       </option>
                      </select>
                 </div>
-                <mat-error *ngIf="checkExportForm.get('companyId').errors?.required">
-                  Company is required.
-                </mat-error>
+
             <mat-hint align="end">Company  </mat-hint>
 
           </mat-form-field>
@@ -45,11 +39,9 @@
           <mat-form-field class="form-group" fxFlex="10%" >
 
               <div class="form-group">
-                  <input matInput type="number" placeholder="Quantity"  required  formControlName="quantity" id="quantity"  [(ngModel)]="selectedExport.quantity" >
+                  <input matInput type="number" placeholder="Quantity"  required  formControlName="quantity" id="quantity"  [(ngModel)]="selectedCommande.quantity" >
               </div>
-              <mat-error *ngIf="checkExportForm.get('quantity').errors?.required">
-                  Quantity is required.
-                </mat-error>
+
 
                 <mat-hint align="end">Quantity of Export</mat-hint>
 
@@ -59,16 +51,13 @@
 
 
 
-              <mat-form-field class="form-group" fxFlex="15%" >
+            <mat-form-field class="form-group" fxFlex="15%" >
                   <div class="form-group">
-                  <input matInput type="date" required  placeholder="Choose a date" placeholder="Choose a date of reponse" formControlName="dateExport" [(ngModel)]="selectedExport.dateExport">
+                  <input matInput type="date" required  placeholder="Choose a date" placeholder="Choose a date of commande" formControlName="dateDelivery" [(ngModel)]="selectedCommande.dateDelivery">
 
                 </div>
 
-                  <mat-error *ngIf="checkExportForm.get('dateExport').errors?.required">
-                      Date is required.
-                    </mat-error>
-                                    <mat-hint align="end">Date of Export</mat-hint>
+          <mat-hint align="end">Date of Export</mat-hint>
 
               </mat-form-field>
 
@@ -78,12 +67,14 @@
             </div>
           </mat-card-content>
           <mat-card-actions align="center">
-            <button mat-raised-button color="primary" type="submit"  [disabled]="checkExportForm.invalid">Save</button>
+            <button mat-raised-button color="primary" type="submit"  [disabled]="checkCommandeForm.invalid">Save</button>
           </mat-card-actions>
         </form>
       </mat-card>
     </section>
     </div>
+
+
 
 
     <div class="basic-container">
@@ -124,9 +115,9 @@
         <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="Export of Date">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Export of Date </th>
-        <td mat-cell *matCellDef="let element"> {{element.dateExport}} </td>
+      <ng-container matColumnDef="date Delivery">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> date Delivery </th>
+        <td mat-cell *matCellDef="let element"> {{element.dateDelivery}} </td>
       </ng-container>
 
 

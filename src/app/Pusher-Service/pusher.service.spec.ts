@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ExportService } from './export.service';
+import { PusherService } from './pusher.service';
 
-describe('ExportService', () => {
+describe('PusherService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ExportService = TestBed.get(ExportService);
+    const service: PusherService = TestBed.get(PusherService);
     expect(service).toBeTruthy();
   });
 });

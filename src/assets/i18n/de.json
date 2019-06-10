@@ -10,7 +10,8 @@
     "Catalog Of faults":"Fehlerkatalog",
     "Action Type":"Aktiontyp",
     "Company":"Unternehmen",
-    "Export":"Ausfuhr",
-    "Product":"Produkt"
+    "order":"bestellen",
+    "Product":"Produkt",
+    "Create a new Complaint":"Erstellen Sie eine neue Beschwerde"
 
 }

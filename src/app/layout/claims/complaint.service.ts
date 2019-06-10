@@ -15,10 +15,20 @@ export class ComplaintService {
 
   constructor(private http: HttpClient) { }
 
+  public createComplaint (route: string, body) {
+    return this.http.post(this.createCompleteRoute(route, environment.urlAddress), body);
+  }
+
+public getAllUser(route : string){
+  return this.http.get(this.createCompleteRoute(route, environment.urlAddress)) ;
+}
+
   public getTypeCompany(route: string) {
     return this.http.get(this.createCompleteRoute(route, environment.urlAddress)) ;
   }
-
+ public getCompanyProduit (route :string){
+  return this.http.get(this.createCompleteRoute(route, environment.urlAddress)) ;
+ }
 
   public  CompanyByTypeCompany(route: string) {
     return this.http.get(this.createCompleteRoute(route, environment.urlAddress));

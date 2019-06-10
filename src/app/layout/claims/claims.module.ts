@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { ClaimsComponent } from './claims.component';
 import { ClaimsRoutingModule } from './claims-routing.module';
@@ -41,7 +42,7 @@ import { ListClaimsComponent } from './list-claims/list-claims.component';
 @NgModule({
   declarations: [ClaimsComponent, DetailsComponent, UpdateComponent, ListClaimsComponent],
   imports: [
-    CommonModule, ClaimsRoutingModule,MatButtonModule,
+    CommonModule, ClaimsRoutingModule,MatButtonModule,TranslateModule,
     MatButtonToggleModule,
     MatCardModule,MatPaginatorModule,
     MatCheckboxModule,

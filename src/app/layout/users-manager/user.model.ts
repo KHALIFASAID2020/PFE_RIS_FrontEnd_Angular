@@ -1,4 +1,5 @@
 export class User {
+  _id?:string;
   email: string;
   password: string;
   lastname: string;
@@ -7,5 +8,4 @@ export class User {
   poste: string;
   role: string;
   phone: string;
-
 }

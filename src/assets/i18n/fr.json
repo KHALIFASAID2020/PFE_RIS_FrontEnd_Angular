@@ -10,8 +10,9 @@
     "Catalog of faults" :"Catalogue des défauts",
     "Action Type":"Type d'Action",
     "Company":"Entreprise",
-    "Export":"Export",
-    "Product":"Produit"
+    "order":"Commande",
+    "Product":"Produit",
+    "Create a new Complaint":"Créer une nouvelle réclamation"
 
 
 }

@@ -1,14 +1,36 @@
 import { Injectable } from '@angular/core';
-import { environment } from './../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Export } from './Export-model';
+import { environment } from 'src/environments/environment';
+import { Commande } from './Commande-model';
+
 @Injectable({
   providedIn: 'root'
 })
-export class ExportService {
+export class CommandeService {
 
   constructor(private http: HttpClient) { }
 
+  public listAllProduit(route){
+    return this.http.get(this.createCompleteRoute(route,environment.urlAddress));
+  }
+  public getAllCompany(route : string){
+    return this.http.get(this.createCompleteRoute(route,environment.urlAddress));
+  }
+
+  create(route,body: Commande) {
+    return this.http.post(this.createCompleteRoute(route, environment.urlAddress), body, this.generateHeaders());
+  }
+
+  public listAllCommande(route){
+    return this.http.get(this.createCompleteRoute(route,environment.urlAddress));
+  }
+  public update(route: string, body){
+    return this.http.put(this.createCompleteRoute(route, environment.urlAddress), body, this.generateHeaders());
+  }
+  public delete(route: string){
+    return this.http.delete(this.createCompleteRoute(route, environment.urlAddress));
+  }
+  /*
   public delete(route: string){
     return this.http.delete(this.createCompleteRoute(route, environment.urlAddress));
   }
@@ -20,7 +42,7 @@ export class ExportService {
     return this.http.put(this.createCompleteRoute(route, environment.urlAddress), body, this.generateHeaders());
   }
 
-  create(route,body: Export) {
+  create(route,body: Commande) {
      return this.http.post(this.createCompleteRoute(route, environment.urlAddress), body, this.generateHeaders());
    }
 
@@ -35,10 +57,8 @@ export class ExportService {
   public getAllProduct(route: string) {
     return this.http.get(this.createCompleteRoute(route, environment.urlAddress));
   }
+*/
 
-  public getAllCompany(route : string){
-    return this.http.get(this.createCompleteRoute(route,environment.urlAddress));
-  }
 
   private createCompleteRoute(route: string, envAddress: string) {
     return `${envAddress}/${route}`;
@@ -49,5 +69,4 @@ export class ExportService {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     }
   }
-
 }

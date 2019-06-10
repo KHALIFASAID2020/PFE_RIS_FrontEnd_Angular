@@ -54,8 +54,8 @@ const routes: Routes = [
             loadChildren: './company/company.module#CompanyModule'
           }
           ,{
-            path: 'export',
-            loadChildren: './export/export.module#ExportModule'
+            path: 'commande',
+            loadChildren: './commande/commande.module#CommandeModule'
           }
           ,{
             path: 'produit',

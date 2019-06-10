@@ -36,8 +36,8 @@
   <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/company']" *ngIf="isAdmin">
   <mat-icon class="sidenav-icon">insert_chart</mat-icon> {{ 'Company' | translate }}
   </a>
-  <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/export']" *ngIf="isAdmin">
-    <mat-icon class="sidenav-icon">insert_chart</mat-icon> {{ 'Export' | translate }}
+  <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/commande']" *ngIf="isAdmin">
+    <mat-icon class="sidenav-icon">insert_chart</mat-icon> {{ 'Order' | translate }}
     </a>
     <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/produit']" *ngIf="isAdmin">
       <mat-icon class="sidenav-icon">insert_chart</mat-icon> {{ 'Product' | translate }}

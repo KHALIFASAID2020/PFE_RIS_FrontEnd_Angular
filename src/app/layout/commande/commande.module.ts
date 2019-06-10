@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ExportComponent } from './export.component';
-import { ExportRoutingModule } from './export-routing.module';
+import { CommandeComponent } from './commande.component';
+import { CommandeRoutingModule } from './commande-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { CommandeService } from './commande.service';
 
 import {MatCardModule, MatAutocompleteModule,
   MatButtonModule,
@@ -34,12 +35,12 @@ import {MatCardModule, MatAutocompleteModule,
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule} from '@angular/material';
-import { ExportService } from './export.service';
+
 @NgModule({
-  declarations: [ExportComponent],
+  declarations: [CommandeComponent],
   imports: [
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
-    CommonModule, ExportRoutingModule,FormsModule,ReactiveFormsModule,
+    CommonModule, CommandeRoutingModule,FormsModule,ReactiveFormsModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,MatPaginatorModule,
@@ -68,7 +69,7 @@ import { ExportService } from './export.service';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule
-  ],providers: [ExportService]
+  ],providers: [CommandeService]
   //ExportService
 })
-export class ExportModule { }
+export class CommandeModule { }

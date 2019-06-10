@@ -2,73 +2,76 @@
 
 <section fxLayout="row wrap" fxLayoutAlign="left left">
   <mat-card fxFlex="1080px" fxFlex.xs="100%">
-    <mat-card-title>Create a new Complaint</mat-card-title>
-    <form [formGroup]="complaintForm" autocomplete="off" novalidate (ngSubmit)="createclamis()" fxLayout="column full"
+    <mat-card-title> {{ 'Create a new Complaint' | translate }}</mat-card-title>
+    <form [formGroup]="complaintForm" autocomplete="off"  (ngSubmit)="createclamis(complaintForm.value)" fxLayout="column full"
       fxLayoutAlign="left left" fxLayoutGap="10px">
       <mat-card-content>
 
   <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
-              <mat-form-field class="form-group" fxFlex="15%">
-                  <input matInput type="text" placeholder="Complaint Ref"   formControlName="refcomplaint" id="refcomplaint"  >
-                  <mat-hint align="end">Complaint Ref</mat-hint>
-                    </mat-form-field>
+
                     <mat-form-field class="form-group" fxFlex="13%" >
-                        <select matNativeControl required formControlName="typecomplaint" class="form-control" (change)="BindCompany($event.target.value)">
+                        <select matNativeControl required formControlName="typecompanyId" class="form-control" (change)="BindCompany($event.target.value)">
                             <option value="">Select Type...</option>
                             <option *ngFor="let compType of listCompanyType" [value]="compType._id">
                                 {{compType.type_company}}
                               </option>
-                  </select>
+                        </select>
                       <mat-hint align="end">Company Type </mat-hint>
 
                     </mat-form-field>
 
-                        <mat-form-field class="form-group" fxFlex="13%" >
-                            <div class="form-group">
-                                <select matNativeControl required formControlName="Company" class="form-control" (change)="BindProduct($event.target.value)">
-                                  <option value="">Select Company...</option>
-                                  <option *ngFor="let comp of listCompany" [value]="comp._id">
-                                      {{comp.companyName}}
-                                    </option>
-                                   </select>
-                              </div>
-                          <mat-hint align="end">Company  </mat-hint>
 
-                        </mat-form-field>
-
-                        <mat-form-field class="form-group" fxFlex="10%" >
-                            <div class="form-group">
-                                <select matNativeControl required formControlName="product" class="form-control">
-                                  <option value="">Select Product...</option>
-                                  <option *ngFor="let produit of listProduit" [value]="produit._id">
-                                      {{produit.RefProduit}}
-                                    </option>
-                                   </select>
-                              </div>
-                          <mat-hint align="end">Product WISI N°  </mat-hint>
-
-                        </mat-form-field>
-
-            </div>
-        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
-
-
-                    <mat-form-field class="form-group" fxFlex="25%" >
+                    <mat-form-field class="form-group" fxFlex="17%" >
                         <div class="form-group">
-                            <select matNativeControl required formControlName="defautcomplaint" class="form-control">
-                              <option value="">Select Default...</option>
-                              <option *ngFor="let defaut of listDefaut" [value]="defaut._id">
-                                  {{defaut.codeDefaut}} - {{defaut.DesignationDefautFr}}
+                            <select matNativeControl required formControlName="companyId" class="form-control" (change)="BindProduct($event.target.value)">
+                              <option value="">Select Company...</option>
+                              <option *ngFor="let comp of listCompany" [value]="comp._id">
+                                  {{comp.companyName}}
+                                </option>
+                               </select>
+                          </div>
+                      <mat-hint align="end">Company  </mat-hint>
+
+                    </mat-form-field>
+
+
+                    <mat-form-field class="form-group" fxFlex="17%" >
+                        <div class="form-group">
+                            <select matNativeControl required formControlName="produitId" class="form-control">
+                              <option value="">Select Product...</option>
+                              <option *ngFor="let produit of listProduit" [value]="produit.produit._id">
+                                  {{produit.produit.RefProduit}}
                                 </option>
                                </select>
                           </div>
                       <mat-hint align="end">Product WISI N°  </mat-hint>
 
                     </mat-form-field>
-               <mat-form-field class="example-full-width" fxFlex="10%">
-                        <input matInput type="number" placeholder="Quantity Fault"   formControlName="defautquantity" id="defautquantity"  >
-                        <mat-hint align="end">Complaint Fault</mat-hint>
-                          </mat-form-field>
+
+                    <mat-form-field class="example-full-width" fxFlex="10%">
+                      <input matInput type="number" placeholder="Quantity Fault"   formControlName="quantity" id="defautquantity"  >
+                      <mat-hint align="end">Complaint Fault</mat-hint>
+                        </mat-form-field>
+
+
+
+            </div>
+       <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
+
+
+                    <mat-form-field class="form-group" fxFlex="25%" >
+                        <div class="form-group">
+                            <select matNativeControl required formControlName="defautId" class="form-control">
+                              <option value="">Select Default...</option>
+                              <option *ngFor="let defaut of listDefaut" [value]="defaut._id">
+                                  {{defaut.codeDefaut}} - {{defaut.DesignationDefautFr}}
+                                </option>
+                               </select>
+                          </div>
+                      <mat-hint align="end">Complaint Fault  </mat-hint>
+
+                    </mat-form-field>
+
             </div>
 
             <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
@@ -76,7 +79,7 @@
 
               <mat-form-field class="example-full-width"  fxFlex="60%">
 
-                    <textarea matInput placeholder="Leave a comment" rows="4"  placeholder="Complaint Description"   formControlName="descriptioncomplaint" id="descriptioncomplaint"></textarea>
+                    <textarea matInput placeholder="Leave a comment" rows="4"  placeholder="Complaint Description"   formControlName="description" id="descriptioncomplaint"></textarea>
                   <mat-hint align="end">Complaint Description</mat-hint>
 
                 </mat-form-field>
@@ -85,32 +88,48 @@
 
             <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
 
+                                  <mat-form-field class="form-group" fxFlex="15%" >
+                                    <div class="form-group">
+                                    <input matInput type="date" required  placeholder="Choose a date of reponse"  placeholder="Choose a date of " formControlName="daterep">
+
+                                  </div>
+                             <mat-hint align="end">Date of Response</mat-hint>
+
+                                </mat-form-field>
 
 
-              <mat-form-field>
-                <input matInput [matDatepicker]="picker"  placeholder="Choose a date" placeholder="Choose a date of reponse" formControlName="dateOfResponse" id="dateOfResponse">
-                <mat-datepicker-toggle matSuffix  [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-                                  <mat-hint align="end">Date of Response</mat-hint>
+                                <mat-form-field class="form-group" fxFlex="15%" >
+                                  <div class="form-group">
+                                  <input matInput type="date" required  placeholder="Choose a date of deadline"   formControlName="datelimit">
 
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput [matDatepicker]="picker2" placeholder="Choose a date" placeholder="Choose a date of deadline" formControlName="dateOfDeadline" id="dateOfDeadline">
-              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-              <mat-datepicker #picker2></mat-datepicker>
-             <mat-hint align="end">Date of DeadLine</mat-hint>
+                                </div>
+                           <mat-hint align="end">Date of DeadLine</mat-hint>
 
-          </mat-form-field>
+                              </mat-form-field>
+
+
 
 
             </div>
-            <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
+           <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
 
-              <mat-form-field class="example-full-width" fxFlex="40%">
-                  <input matInput type="text" placeholder="Complaint Destination"   formControlName="destinationcomplaint" id="destinationcomplaint"  >
-                  <mat-hint align="end">Complaint Destination</mat-hint>
+
+            <mat-form-field  class="form-control" fxFlex="25%">
+              <mat-label>Select Destination</mat-label>
+
+            <mat-select required formControlName="destinationId" multiple ng-model='listUser'>
+              <mat-option *ngFor="let user of listUser" [value]="user._id">  {{user.lastname}}   {{user.firstname}} </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+                    <mat-form-field  class="form-control" fxFlex="25%">
+                        <mat-label>User en Copy</mat-label>
+
+                      <mat-select required formControlName="destinationencopy" multiple ng-model='listUser'>
+                        <mat-option *ngFor="let user of listUser" [value]="user._id">{{user.lastname}}  {{user.firstname}} </mat-option>
+                      </mat-select>
                     </mat-form-field>
-
 
             </div>
 
@@ -118,7 +137,7 @@
 
       </mat-card-content>
       <mat-card-actions align="center">
-        <button mat-raised-button color="primary" [disabled]="!complaintForm.valid">Create</button>
+        <button mat-raised-button color="primary"  [disabled]="!complaintForm.valid" >Create</button>
         <button mat-raised-button color="warn" [disabled]="!complaintForm.valid">Send</button>
 
       </mat-card-actions>
@@ -126,3 +145,15 @@
   </mat-card>
 </section>
 </div>
+<!-- refReclamation: string;
+typecompanyId: string;
+produitId: string;
+description: string;
+daterep: string;
+datelimit: string;
+defautId: string;
+companyId: string;
+creatorId: string;
+destinationId:string;
+destinationencopy:string;
+quantity:number; -->

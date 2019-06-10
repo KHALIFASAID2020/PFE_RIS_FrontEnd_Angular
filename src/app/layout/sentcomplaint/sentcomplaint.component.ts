@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ComplaintService } from '../claims/complaint.service';
+import { AuthService } from 'src/app/login/auth.service';
+import { User } from 'src/app/login/auth-data.model';
 
 @Component({
   selector: 'app-sentcomplaint',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SentcomplaintComponent implements OnInit {
 
-  constructor() { }
+  constructor(private complaintService :ComplaintService,private authService: AuthService) { }
+  currentUser: User;
+  creatorId : string;
 
   ngOnInit() {
+    this.currentUser = this.authService.currentUserValue;
+    this.creatorId = this.currentUser._id;
+    console.log(this.creatorId);
+
   }
 
 }

@@ -10,6 +10,7 @@
     "Catalog of faults":"Catalog of faults",
     "Action Type":"Action Type",
     "Company":"Company",
-    "Export":"Export",
-    "Product":"Product"
+    "order":"order",
+    "Product":"Product",
+    "Create a new Complaint":"Create a new Complaint"
 }
