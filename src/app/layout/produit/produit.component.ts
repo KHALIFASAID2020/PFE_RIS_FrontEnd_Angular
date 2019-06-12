@@ -171,9 +171,9 @@ onDelete(_id: string, form: NgForm) {
  }
 
 
-  public doFilter = (value: string) => {
-    this.dataSource.filter = value.trim().toLocaleLowerCase();
-  }
+ applyFilter(filterValue: string) {
+  this.dataSource.filter = filterValue;
+}
 
 
 }

@@ -8,10 +8,10 @@
           <mat-icon class="sidenav-icon">next_week</mat-icon>  {{ 'Create complaint' | translate }}
       </a>
       <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/inboxcomplaint']">
-          <mat-icon class="sidenav-icon">table_chart</mat-icon> {{ 'Complaint Inbox' | translate }}
+          <mat-icon class="sidenav-icon">format_textdirection_r_to_l</mat-icon> {{ 'Complaint Inbox' | translate }}
       </a>
       <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/sentcomplaint']">
-          <mat-icon class="sidenav-icon">input</mat-icon>  {{ 'Complaint Sent' | translate }}
+          <mat-icon class="sidenav-icon">format_textdirection_l_to_r</mat-icon>  {{ 'Complaint Sent' | translate }}
       </a>
       <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/actionplan']">
           <mat-icon class="sidenav-icon">grid_on</mat-icon>  {{ 'Action Plan' | translate }}
@@ -24,17 +24,17 @@
       </a>
 
      <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/users']" *ngIf="isAdmin">
-        <mat-icon class="sidenav-icon">insert_chart</mat-icon> {{ 'Users' | translate }}
+        <mat-icon class="sidenav-icon">account_box</mat-icon> {{ 'Users' | translate }}
     </a>
 
     <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/catalogfaults']" *ngIf="isAdmin">
-      <mat-icon class="sidenav-icon">insert_chart</mat-icon> {{ 'Catalog Of faults' | translate }}
+      <mat-icon class="sidenav-icon">remove_circle</mat-icon> {{ 'Catalog Of faults' | translate }}
   </a>
   <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/actiontype']" *ngIf="isAdmin">
     <mat-icon class="sidenav-icon">insert_chart</mat-icon> {{ 'Action Type' | translate }}
   </a>
   <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/company']" *ngIf="isAdmin">
-  <mat-icon class="sidenav-icon">insert_chart</mat-icon> {{ 'Company' | translate }}
+  <mat-icon class="sidenav-icon">account_balance</mat-icon> {{ 'Company' | translate }}
   </a>
   <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/commande']" *ngIf="isAdmin">
     <mat-icon class="sidenav-icon">insert_chart</mat-icon> {{ 'Order' | translate }}

@@ -8,9 +8,20 @@
       <mat-card-content>
 
   <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
-
+    <!-- refReclamation : req.body.refReclamation,
+    typecompany:typecompany._id,
+    produit:produit._id,
+    quantity:req.body.quantity,
+    description:req.body.description,
+    daterep:req.body.daterep,
+    datelimit:req.body.datelimit,
+    defaut:defaut._id,
+     company:company._id,
+        creator:creator._id,
+        destination:destination._id,
+        destinationencopy:destinationencopy._id -->
                     <mat-form-field class="form-group" fxFlex="13%" >
-                        <select matNativeControl required formControlName="typecompanyId" class="form-control" (change)="BindCompany($event.target.value)">
+                        <select matNativeControl required formControlName="typecompany" class="form-control" (change)="BindCompany($event.target.value)">
                             <option value="">Select Type...</option>
                             <option *ngFor="let compType of listCompanyType" [value]="compType._id">
                                 {{compType.type_company}}
@@ -23,7 +34,7 @@
 
                     <mat-form-field class="form-group" fxFlex="17%" >
                         <div class="form-group">
-                            <select matNativeControl required formControlName="companyId" class="form-control" (change)="BindProduct($event.target.value)">
+                            <select matNativeControl required formControlName="company" class="form-control" (change)="BindProduct($event.target.value)">
                               <option value="">Select Company...</option>
                               <option *ngFor="let comp of listCompany" [value]="comp._id">
                                   {{comp.companyName}}
@@ -37,7 +48,7 @@
 
                     <mat-form-field class="form-group" fxFlex="17%" >
                         <div class="form-group">
-                            <select matNativeControl required formControlName="produitId" class="form-control">
+                            <select matNativeControl required formControlName="produit" class="form-control">
                               <option value="">Select Product...</option>
                               <option *ngFor="let produit of listProduit" [value]="produit.produit._id">
                                   {{produit.produit.RefProduit}}
@@ -61,7 +72,7 @@
 
                     <mat-form-field class="form-group" fxFlex="25%" >
                         <div class="form-group">
-                            <select matNativeControl required formControlName="defautId" class="form-control">
+                            <select matNativeControl required formControlName="defaut" class="form-control">
                               <option value="">Select Default...</option>
                               <option *ngFor="let defaut of listDefaut" [value]="defaut._id">
                                   {{defaut.codeDefaut}} - {{defaut.DesignationDefautFr}}
@@ -117,7 +128,7 @@
             <mat-form-field  class="form-control" fxFlex="25%">
               <mat-label>Select Destination</mat-label>
 
-            <mat-select required formControlName="destinationId" multiple ng-model='listUser'>
+            <mat-select required formControlName="destination" multiple ng-model='listUser'>
               <mat-option *ngFor="let user of listUser" [value]="user._id">  {{user.lastname}}   {{user.firstname}} </mat-option>
             </mat-select>
           </mat-form-field>

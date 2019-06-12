@@ -45,48 +45,16 @@ export class ClaimsComponent implements OnInit {
 
   ngOnInit() {
      this.complaintForm = new FormGroup({
-      typecompanyId: new FormControl('', [Validators.required, Validators.maxLength(60)]),
-      companyId: new FormControl('', [Validators.required, Validators.maxLength(60)]),
-      produitId: new FormControl('', [Validators.required, Validators.maxLength(60)]),
+      typecompany: new FormControl('', [Validators.required, Validators.maxLength(60)]),
+      company: new FormControl('', [Validators.required, Validators.maxLength(60)]),
+      produit: new FormControl('', [Validators.required, Validators.maxLength(60)]),
       quantity:new FormControl('',[Validators.required]),
-      defautId: new FormControl('', [Validators.required, Validators.maxLength(60)]),
+      defaut: new FormControl('', [Validators.required, Validators.maxLength(60)]),
       description:new FormControl('', [Validators.required, Validators.maxLength(6000)]),
       daterep: new FormControl('',[Validators.required]),
       datelimit: new FormControl('',[Validators.required]),
-      destinationId:new FormControl('', [Validators.required]),
-      destinationencopy:new FormControl('', [Validators.required])
-
-
-
- /*
- refReclamation: string;
- creatorId: string;
-
-  typecompanyId: string;
-  produitId: string;
-  description: string;
-  daterep: string;
-  datelimit: string;
-  defautId: string;
-  companyId: string;
-  creatorId: string;
-  destinationId:string;
-  destinationencopy:string;
-  quantity:number; */
-
-
-
-
-     /*  product: new FormControl('', [Validators.required, Validators.maxLength(60)]),
-      defautcomplaint: new FormControl('', [Validators.required, Validators.maxLength(60)]),
-      descriptioncomplaint:new FormControl('', [Validators.required, Validators.maxLength(6000)]),
-      dateOfResponse: new FormControl([Validators.required]),
-      dateOfDeadline: new FormControl([Validators.required]),
-      destinationcomplaint:new FormControl('', [Validators.required, Validators.maxLength(60)]),
-      */
-     // image:new FormControl('',[Validators.required]),
-
-    });
+      destination:new FormControl('', [Validators.required]),
+      destinationencopy:new FormControl('', [Validators.required])    });
     this.getAllUser();
   this.getAllDefaut();
 
@@ -122,7 +90,7 @@ getAllDefaut(){
 }
 
 getAllUser(){
-  this.complaintService.getAllFault(`users/`).subscribe(result =>{
+  this.complaintService.getAllUser(`users/`).subscribe(result =>{
     this.listUser = result as User[];
  });
 }
@@ -136,17 +104,17 @@ console.log('Creator ID:',this.creatorId);
 
   const complaint: Complaint = {
     refReclamation: 'REC'+Date.now(),
-    typecompanyId: complaintForm.typecompanyId,
-    produitId: complaintForm.produitId,
+    typecompany: complaintForm.typecompany,
+    produit: complaintForm.produit,
     description: complaintForm.description,
     daterep: complaintForm.daterep,
     datelimit: complaintForm.datelimit,
-    defautId: complaintForm.defautId,
-    companyId: complaintForm.companyId,
-    creatorId: this.creatorId,
-    destinationId:complaintForm.destinationId,
-    destinationencopy:complaintForm.destinationencopy,
-    quantity:complaintForm.quantity
+    defaut: complaintForm.defaut,
+    company: complaintForm.company,
+    creator: this.creatorId,
+    destination: complaintForm.destination,
+    destinationencopy: complaintForm.destinationencopy,
+    quantity: complaintForm.quantity
   }
 console.log('Complaint',complaint);
 

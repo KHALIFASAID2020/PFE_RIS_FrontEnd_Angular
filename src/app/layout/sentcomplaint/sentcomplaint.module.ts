@@ -2,11 +2,68 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SentcomplaintComponent } from './sentcomplaint.component';
 import { SentComplaintRoutingModule } from './sentcomplaint-routing.module';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatCardModule, MatAutocompleteModule,
+  MatButtonModule,
+  MatPaginatorModule,
+  MatButtonToggleModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatStepperModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule} from '@angular/material';
 @NgModule({
   declarations: [SentcomplaintComponent],
   imports: [
-    CommonModule,SentComplaintRoutingModule
+    CommonModule,SentComplaintRoutingModule,FlexLayoutModule,MatCardModule, MatAutocompleteModule,
+    MatButtonModule,
+    MatPaginatorModule,
+    MatButtonToggleModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatStepperModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule
   ]
 })
 export class SentcomplaintModule { }

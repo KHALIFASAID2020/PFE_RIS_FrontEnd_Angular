@@ -1,6 +1,6 @@
 export class Company {
   _id?: string;
-  CompanyName: string;
+  companyName: string;
   companyAddress: string;
   companyCountry: string;
   companyFax: string;

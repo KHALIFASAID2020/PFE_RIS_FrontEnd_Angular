@@ -16,7 +16,7 @@
 
 
           <mat-form-field class="example-full-width" fxFlex="50%">
-            <input matInput type="text" placeholder="French Fault"  [(ngModel)]="selectedFault.DesignationDefautEn"  formControlName="DesignationDefautEn" required >
+            <input matInput type="text" placeholder="French Fault"  [(ngModel)]="selectedFault.DesignationDefautFr"  formControlName="DesignationDefautFr" required >
             <mat-hint align="end">Not more then 100 characters long.</mat-hint>
             <!-- <mat-error *ngIf="hasError('address', 'required')">Address is required</mat-error>
             <mat-error *ngIf="hasError('address', 'maxlength')">You have more than 100 characters</mat-error>
@@ -24,7 +24,7 @@
 
 
           <mat-form-field class="example-full-width" fxFlex="50%">
-            <input matNativeControl type="text" placeholder="English Fault"  [(ngModel)]="selectedFault.DesignationDefautDe"  formControlName="DesignationDefautDe" required >
+            <input matNativeControl type="text" placeholder="English Fault"  [(ngModel)]="selectedFault.DesignationDefautEn"  formControlName="DesignationDefautEn" required >
             <mat-hint align="end">Not more then 100 characters long.</mat-hint>
           <!--   <mat-error *ngIf="hasError('address', 'required')">Address is required</mat-error>
             <mat-error *ngIf="hasError('address', 'maxlength')">You have more than 100 characters</mat-error>
@@ -32,7 +32,7 @@
 
 
           <mat-form-field class="example-full-width" fxFlex="50%">
-            <input matInput type="text" placeholder="Deautch Fault" [(ngModel)]="selectedFault.DesignationDefautFr"  formControlName="DesignationDefautFr" required>
+            <input matInput type="text" placeholder="Deautch Fault" [(ngModel)]="selectedFault.DesignationDefautDe"  formControlName="DesignationDefautDe" required>
             <mat-hint align="end">Not more then 100 characters long.</mat-hint>
          <!--    <mat-error *ngIf="hasError('address', 'required')">Address is required</mat-error>
             <mat-error *ngIf="hasError('address', 'maxlength')">You have more than 100 characters</mat-error>
@@ -59,10 +59,10 @@
         <mat-card-content>
 
 
-  <div fxLayout fxLayout.lt-md="column wrap" fxLayoutAlign="center center" fxLayoutGap.gt-sm="250px" fxLayoutGap.lt.md="20px">
-    <mat-form-field>
-      <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
-    </mat-form-field>
+          <div fxLayout fxLayout.lt-md="column wrap" fxLayoutAlign="center center" fxLayoutGap.gt-sm="250px" fxLayoutGap.lt.md="20px">
+            <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+            </mat-form-field>
 
 
    <!--  <div>

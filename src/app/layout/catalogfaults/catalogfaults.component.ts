@@ -77,9 +77,10 @@ export class CatalogfaultsComponent implements OnInit {
  }
 
 
-  public doFilter = (value: string) => {
-    this.dataSource.filter = value.trim().toLocaleLowerCase();
-  }
+ applyFilter(filterValue: string) {
+  this.dataSource.filter = filterValue;
+}
+
 
    resetForm() {
     this.selectedFault = {

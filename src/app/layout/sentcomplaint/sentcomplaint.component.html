@@ -1,3 +1,75 @@
-<p>
-  sentcomplaint works!
-</p>
+<div fxLayout fxLayout.lt-md="column wrap" fxLayoutAlign="center center" fxLayoutGap.gt-sm="250px" fxLayoutGap.lt.md="20px">
+  <mat-form-field>
+    <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  <div>
+    <a [routerLink]="['/claims']" mat-button color="primary">Create Complaint</a>
+  </div>
+</div>
+<!-- ['ref Complaint', 'Complaint Type','company', 'Product', 'Quantity' ,'created At','details', 'update', 'delete'];
+ -->
+<table mat-table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="Ref Complaint">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Ref Complaint </th>
+    <td mat-cell *matCellDef="let element"> {{element.refReclamation}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Complaint Type">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Complaint Type </th>
+    <td mat-cell *matCellDef="let element"> {{element.typecompany.type_company}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="company">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> company </th>
+    <td mat-cell *matCellDef="let element"> {{element.company.companyName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Product">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Product </th>
+    <td mat-cell *matCellDef="let element"> {{element.produit.RefProduit}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="Quantity">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
+    <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="created At">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> created At </th>
+    <td mat-cell *matCellDef="let element"> {{element.createdAt | date }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="details">
+    <th mat-header-cell *matHeaderCellDef> Details </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="primary" (click)="redirectToDetails(element._id)">
+          <mat-icon class="mat-18">reorder</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="update">
+      <th mat-header-cell *matHeaderCellDef> Update </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="accent" (click)="redirectToUpdate(element.id)">
+            <mat-icon class="mat-18">system_update</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="warn" (click)="redirectToDelete(element.id)">
+              <mat-icon class="mat-18">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 4, 6, 10, 20]">
+</mat-paginator>
