@@ -3,7 +3,7 @@ import { environment } from './../../../environments/environment';
 import { Observable } from 'rxjs/';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PusherService } from './pusher.service';
-import { fault } from './ifault';
+import { fault } from '../../models/ifault';
 
 import { map } from 'rxjs/operators';
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ComplaintService } from '../claims/complaint.service';
 import { AuthService } from 'src/app/login/auth.service';
-import { User } from 'src/app/login/auth-data.model';
+import { User } from 'src/app/models/auth-data.model';
 import { Complaint } from '../claims/complaint.model';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';

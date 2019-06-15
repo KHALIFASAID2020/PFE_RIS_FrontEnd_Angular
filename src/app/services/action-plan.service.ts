@@ -23,10 +23,22 @@ export class ActionPlanService {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     }
   }
-
+  public deleteActionPlan(route: string){
+    return this.http.delete(this.createCompleteRoute(route, environment.urlAddress));
+  }
   public getActionPlanByComplaint(route : string){
     return this.http.get(this.createCompleteRoute(route, environment.urlAddress)) ;
   }
+
+
+  public updateActionPlanTeamLeaderAffect(route: string, body){
+    return this.http.put(this.createCompleteRoute(route, environment.urlAddress), body, this.generateHeaders());
+  }
+
+  public getComplaintRefByActionPlanId(route: string){
+    return this.http.get(this.createCompleteRoute(route, environment.urlAddress)) ;
+  }
+
 
 }
 

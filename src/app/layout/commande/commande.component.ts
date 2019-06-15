@@ -8,9 +8,9 @@ import { ErrorStateMatcher, MatSlideToggleChange } from '@angular/material';
 import {ToastrService} from 'ngx-toastr';
 
 
-import { Company } from '../company/iCompany';
-import { Produit} from '../produit/produit-model';
-import {Commande} from './Commande-model';
+import { Company } from '../../models/iCompany';
+import { Produit} from '../../models/produit-model';
+import {Commande} from '../../models/Commande-model';
 
 @Component({
   selector: 'app-commande',

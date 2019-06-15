@@ -1,8 +1,8 @@
-import { User } from 'src/app/login/auth-data.model';
-import { Produit } from '../produit/produit-model';
-import { CompanyType } from '../company/CompanyType-model';
-import { fault } from '../catalogfaults/ifault';
-import { Company } from '../company/iCompany';
+import { User } from 'src/app/models/auth-data.model';
+import { Produit } from '../../models/produit-model';
+import { CompanyType } from '../../models/CompanyType-model';
+import { fault } from '../../models/ifault';
+import { Company } from '../../models/iCompany';
 
 export class Complaint {
   _id?:string;

@@ -10,6 +10,7 @@ export class ActionplanComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

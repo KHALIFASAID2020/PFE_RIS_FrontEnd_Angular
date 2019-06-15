@@ -1,5 +1,5 @@
-import { Company } from '../company/iCompany';
-import {Produit} from '../produit/produit-model';
+import { Company } from './iCompany';
+import {Produit} from './produit-model';
 export class Commande {
   _id?: string;
   dateDelivery: string;

@@ -35,11 +35,10 @@ import {MatCardModule, MatAutocompleteModule,
   MatToolbarModule,
   MatTooltipModule} from '@angular/material';
 import { DetailsInboxComplaintComponent } from './details-inbox-complaint/details-inbox-complaint.component';
-import { UpdateAffectedActionPlanComponent } from './update-affected-action-plan/update-affected-action-plan.component';
 
 
 @NgModule({
-  declarations: [InboxcomplaintComponent, DetailsInboxComplaintComponent, UpdateAffectedActionPlanComponent],
+  declarations: [InboxcomplaintComponent, DetailsInboxComplaintComponent],
   imports: [
     CommonModule,FormsModule,ReactiveFormsModule, InboxComplaintRoutingModule,MatCardModule, MatAutocompleteModule,FlexLayoutModule,
     MatButtonModule,

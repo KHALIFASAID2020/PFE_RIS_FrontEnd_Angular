@@ -2,14 +2,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ComplaintService } from '../../claims/complaint.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Complaint } from '../../claims/complaint.model';
-import { User } from 'src/app/login/auth-data.model';
 import { AuthService } from 'src/app/login/auth.service';
 import { FormGroup, FormControl, Validators, FormGroupDirective, NgForm, FormBuilder } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material';
 import { ActionPlanService } from 'src/app/services/action-plan.service';
-import { ActionPlan } from '../../actionplan/Action-Plan-model';
+import { ActionPlan } from '../../../models/Action-Plan-model';
 import { ToastrService } from 'ngx-toastr';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { User } from '../../../models/user.model';
 
 @Component({
   selector: 'app-details-inbox-complaint',
@@ -18,7 +18,7 @@ import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 })
 export class DetailsInboxComplaintComponent implements OnInit {
   @ViewChild('teamLeaderForm') form;
-  public displayedColumns = ['Ref ActionPlan', 'Team Leader', 'Status', 'update', 'delete'];
+  public displayedColumns = ['Ref ActionPlan', 'Team Leader', 'Status', 'update', 'delete','Details'];
   public dataSource = new MatTableDataSource<ActionPlan>();
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -28,8 +28,10 @@ export class DetailsInboxComplaintComponent implements OnInit {
   listUser: User[];
   listActionPlan: ActionPlan[];
 
-  public teamLeaderForm: FormGroup;
+  public checkteamLeaderForm: FormGroup;
   errorState = false;
+  selectedActionPlan: ActionPlan;
+
   errorMatcher = new CustomErrorStateMatcher();
 
 // tslint:disable-next-line: max-line-length
@@ -41,12 +43,24 @@ export class DetailsInboxComplaintComponent implements OnInit {
     this.getAllUser();
     this.getActionPlanByComplaint();
 
-    this.teamLeaderForm = this.formBuilder.group({
+    this.checkteamLeaderForm = this.formBuilder.group({
       teamLeader: ['', Validators.required],
 
    });
-
+this.resetObject();
   }
+
+
+//Reset Object
+resetObject(){
+  this.selectedActionPlan = {
+    _id: "",
+    RefActionPlan: "",
+    reclamation: new Complaint(),
+    teamLeader: new User(),
+    status:"",
+  }
+}
   getAllUser() {
     this.complaintService.getAllUser(`users/`).subscribe(result => {
       this.listUser = result as User[];
@@ -54,33 +68,57 @@ export class DetailsInboxComplaintComponent implements OnInit {
   }
 
   sendRecToTeamLeader(teamLeaderForm) {
+    const actionPlan : ActionPlan={
+      RefActionPlan: 'Plan'+Date.now(),
+      reclamation:  this.activeRoute.snapshot.params.id,
+      teamLeader: teamLeaderForm.teamLeader,
+      status: 'Non Atribué'
 
-const actionPlan : ActionPlan={
-  RefActionPlan: 'Plan'+Date.now(),
-  reclamation:  this.activeRoute.snapshot.params.id,
-  teamLeader: teamLeaderForm.teamLeader,
-  status: 'Non Atribué'
+    }
+console.log(actionPlan);
+    if (this.selectedActionPlan._id === '') {
+      // console.log(this.selectedExport._id);
 
-}
+      this.actionPlanService.createActionPlan('ActionPlan/AddActionPlan',actionPlan).subscribe(result=>{
+            console.log(result);
+            this.getActionPlanByComplaint();
 
+           this.toastr.success('Action Plan Affected !',`Action Plan Affected !`);
+          //this.router.navigate(['../sentcomplaint']);
 
-    console.log('Action Plan ',actionPlan);
+          }, (error) => {
+           // this.toastr.error('Error Complaint!', 'Error Complaint !');
+           console.log(error);
 
-this.complaintService.createComplaint('ActionPlan/AddActionPlan',actionPlan).subscribe(result=>{
-      console.log(result);
-      this.getActionPlanByComplaint();
+          });
 
-     this.toastr.success('Action Plan Affected !',`Action Plan Affected !`);
-    //this.router.navigate(['../sentcomplaint']);
-
-    }, (error) => {
-     // this.toastr.error('Error Complaint!', 'Error Complaint !');
-     console.log(error);
-
-    });
+         } else {
+          console.log('Action Plan with id for Update',actionPlan);
 
 
-console.log(teamLeaderForm);
+
+           this.actionPlanService.updateActionPlanTeamLeaderAffect('ActionPlan/updateActionPlanTeamLeader/'+this.selectedActionPlan._id, actionPlan).subscribe((result: ActionPlan)=>{
+            this.toastr.info('Team Leader  Updated','Team Leader  Updated');
+            this.getActionPlanByComplaint();
+            this.resetObject();
+
+
+
+           },(error)=>{
+            this.toastr.error('Error Updated','Error  Updated');
+
+             console.error(error);
+           });
+
+
+
+
+          }
+
+
+
+
+//console.log(teamLeaderForm);
 
   }
 
@@ -114,9 +152,31 @@ applyFilter(filterValue: string) {
 }
 
 
-public redirectToUpdate = (id: string) => {
-  let url: string = `/inboxcomplaint/updateAffectedActionPlan/${id}`;
+onEdit(actionPlan: ActionPlan) {
+  this.selectedActionPlan = actionPlan;
+  console.log(actionPlan);
+}
+
+
+
+onDelete(_id: string, form: NgForm) {
+  if (confirm('Are you sure to delete this Action Plan ?') == true) {
+    this.actionPlanService.deleteActionPlan(`ActionPlan/${_id}`).subscribe((res) => {
+      //this.refreshEmployeeList();
+      //this.resetForm(form);
+      this.toastr.error('Fault deleted','Fault deleted');
+
+      this.resetObject();
+      console.log('Default deleted');
+      this.getActionPlanByComplaint();
+
+    });
+  }
+}
+public redirectToDetailsActionPlan = (id: string) => {
+  let url: string = `actionplan/detailsplan/${id}`;
   this.router.navigate([url]);
+  console.log(id);
 }
 
 }

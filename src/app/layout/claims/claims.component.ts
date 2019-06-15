@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ComplaintService } from './complaint.service';
-import { CompanyType } from '../company/CompanyType-model';
-import { Company } from '../company/iCompany';
-import { Produit } from '../produit/produit-model';
-import { fault } from '../catalogfaults/ifault';
+import { CompanyType } from '../../models/CompanyType-model';
+import { Company } from '../../models/iCompany';
+import { Produit } from '../../models/produit-model';
+import { fault } from '../../models/ifault';
 import {FileUploadModule} from 'primeng/fileupload';
-import { User } from 'src/app/login/auth-data.model';
+import { User } from 'src/app/models/auth-data.model';
 
 import { AuthService } from 'src/app/login/auth.service';
 import { Complaint } from './complaint.model';

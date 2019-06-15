@@ -1,7 +1,7 @@
 import { Component, OnInit , AfterViewInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {UserManagerService} from './user-manager.service';
-import {User} from './user.model';
+import {User} from '../../models/user.model';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';

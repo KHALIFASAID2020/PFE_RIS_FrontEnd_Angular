@@ -6,7 +6,7 @@ import { FormGroup, FormControl, Validators, FormBuilder, NgForm, FormGroupDirec
 
 
 import { ProduitService } from './produit.service';
-import { Produit } from './produit-model';
+import { Produit } from '../../models/produit-model';
 
 
 @Component({

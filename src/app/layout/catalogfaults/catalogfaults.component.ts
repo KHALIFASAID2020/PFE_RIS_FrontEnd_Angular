@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormControl, NgForm, FormGroupDirective, FormBuilder } from '@angular/forms';
 import {FaultService} from './fault.service';
-import { fault} from './ifault';
+import { fault} from '../../models/ifault';
 import { MatTableDataSource, MatSort, MatPaginator, ErrorStateMatcher } from '@angular/material';
 import {ToastrService} from 'ngx-toastr';
 

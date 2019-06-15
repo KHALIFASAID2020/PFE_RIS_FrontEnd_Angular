@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {User} from './auth-data.model';
+import {User} from '../models/auth-data.model';
 import {HttpClient} from '@angular/common/http';
 import { tokenKey } from '@angular/core/src/view';
 import { Subject, BehaviorSubject, Observable } from 'rxjs';

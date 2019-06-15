@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserManagerService } from '../user-manager.service';
-import { User } from '../user.model';
+import { User } from '../../../models/user.model';
 import { Location } from '@angular/common';
 import { first } from 'rxjs/operators';
 
