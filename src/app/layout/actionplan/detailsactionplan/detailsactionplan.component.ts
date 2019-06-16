@@ -11,6 +11,7 @@ import { ResponsableAction } from 'src/app/models/ResponsableAction';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { ActionService } from 'src/app/services/action.service';
 import { ActionType } from 'src/app/models/ActionType';
+import { Action } from 'src/app/models/Action';
 
 @Component({
   selector: 'app-detailsactionplan',
@@ -19,10 +20,16 @@ import { ActionType } from 'src/app/models/ActionType';
 })
 export class DetailsactionplanComponent implements OnInit {
   listActionType : ActionType[]
+  listContainementActions : Action[];
   listUser : User[];
   listResponsable : ResponsableAction[]
+  listCorrectiveActions : Action[];
+
   public descriptionForm: FormGroup;
   public ResponsableGroupForm: FormGroup;
+  public FormContainementActions:FormGroup;
+  public FormCorrectiveActions:FormGroup;
+
   refGroup = new AnalysisGroup();
   public idGroup:string;
   refActionPlan = new ActionPlan();
@@ -36,14 +43,14 @@ export class DetailsactionplanComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
 
-
+//idType : string
 
   constructor(private actionPlanService : ActionPlanService,
     private analysisGroupeService : AnalysisGroupService,private toastr: ToastrService,
     private activeRoute: ActivatedRoute,private actionService : ActionService
     ) {
 
-      this.getComplaintRefByIdActionPlan();
+
 
      // this.getGroupAnalyseByIdActionPlan();
 
@@ -59,13 +66,38 @@ export class DetailsactionplanComponent implements OnInit {
       this.descriptionForm = new FormGroup({
         description: new FormControl('', [Validators.required])   });
 
+        this.FormContainementActions = new FormGroup({
+          position: new FormControl('', [Validators.required]) ,
+          description: new FormControl('', [Validators.required]),
+          responsableAction: new FormControl('', [Validators.required]) ,
+          dateResponse:new FormControl('', [Validators.required])
+        });
+
+          this.FormCorrectiveActions = new FormGroup({
+            position: new FormControl('', [Validators.required]) ,
+            description: new FormControl('', [Validators.required]),
+            responsableAction: new FormControl('', [Validators.required]) ,
+            dateResponse:new FormControl('', [Validators.required])    });
+
+
         this.ResponsableGroupForm = new FormGroup({
           responsableAction: new FormControl('', [Validators.required])   });
         this.getAllUser();
         this.getAllResponsableByGroupAnalyse();
-        this.getAllTypeAction();
+         this.getComplaintRefByIdActionPlan();
+         this.getAllContainementActions();
+         this.getAllCorrectiveActions();
+       // this.getAllContainementActions('Containement Actions');
+     //   this.getAllTypeAction();
+       // this.idType = this.CallbackFunctionToFindTypeById ("Containement Actions") ;
+
 
     }
+
+
+
+
+
     private getComplaintRefByIdActionPlan = () => {
       const id: string = this.activeRoute.snapshot.params.id;
       this.actionPlanService.getComplaintRefByActionPlanId(`ActionPlan/${id}`)
@@ -80,7 +112,7 @@ export class DetailsactionplanComponent implements OnInit {
 
 /* ---------- Group Analyse ---------------------*/
 getAllUser(){
-  this.analysisGroupeService.getAllResponsableAction(`users/`).subscribe(result =>{
+  this.analysisGroupeService.getAllResponsableAction(`users/`).subscribe(result => {
     this.listUser = result as User[];
  });
 }
@@ -90,7 +122,7 @@ getAllUser(){
 createResponsableAction(formgroup){
   const id: string = this.activeRoute.snapshot.params.id;
   const Responsable:ResponsableAction  = {
-  RefResponsable:'RES'+Date.now(),
+  RefResponsable:'RES' + Date.now(),
   responsableAction :formgroup.responsableAction,
   }
 console.log(Responsable);
@@ -110,7 +142,7 @@ getAllResponsableByGroupAnalyse() {
   this.analysisGroupeService.getAllResponsableByGroupAnalyse(`responsableAction/getAllResponsableByGroupAnalyse/${id}`).subscribe(result => {
     //this.listResponsable = result as User[];
     console.log(result);
-    this.dataSource.data=result as ResponsableAction[];
+    this.dataSource.data = result as ResponsableAction[];
 
   });
 }
@@ -178,15 +210,91 @@ createdescription(descriptionForm){
 
 /* --------------------- ContainementActions ------------------------------ */
 
-getAllTypeAction(){
-  this.actionService.getAllTypeAction(`typeAction/`).subscribe(result => {
-    this.listActionType = result as ActionType[];
-    console.log("All Action Type",this.listActionType);
+
+
+
+
+createAction(action:Action,route:string,idPlan : string,ActionType:string){
+
+  this.actionService.createAction(`${route}/?idPlan=${idPlan}&ActionType=${ActionType}`, action)
+  .subscribe((result) => {
+    console.log(result);
+    this.toastr.success(`${ActionType} Of this Plan created`);
+  }, (error) => {
+    console.error(error);
+    this.toastr.warning(`${ActionType} Of this Plan Error`,error);
   });
 }
 
+//https://stackabuse.com/get-query-strings-and-parameters-in-express-js/
+
+
+
+
+
+
+createContainementAction(FormContainementAction){
+  const idPlan: string = this.activeRoute.snapshot.params.id;
+
+  const ContainementAction:Action  = {
+
+  refAction: "ACT" + Date.now(),
+  position: FormContainementAction.position,
+  status: "En cours",
+  description: FormContainementAction.description,
+  responsableAction: FormContainementAction.responsableAction,
+  dateResponse: FormContainementAction.dateResponse
+
+  }
+  this.createAction(ContainementAction, 'Action/AddAction', idPlan, 'Containement Actions');
+}
+
+
+
+
 
 /* Action Immédiate */
+
+
+/* Cause Root */
+
+
+
+
+/*  */
+getAllContainementActions(){
+  const idPlan: string = this.activeRoute.snapshot.params.id;
+
+  this.actionService.getActions(`Action/getActions/?idPlan=${idPlan}&ActionType=Containement Actions`).subscribe(result => {
+    this.listContainementActions = result as Action[];
+    console.log("All Containement Actions ",this.listContainementActions);
+  });
+}
+
+getAllCorrectiveActions(){
+  const idPlan: string = this.activeRoute.snapshot.params.id;
+
+  this.actionService.getActions(`Action/getActions/?idPlan=${idPlan}&ActionType=Corrective Actions`).subscribe(result => {
+    this.listCorrectiveActions = result as Action[];
+    console.log("All Containement Actions ",this.listCorrectiveActions);
+  });
+}
+
+createCorrectiveAction(FormContainementAction){
+  const idPlan: string = this.activeRoute.snapshot.params.id;
+
+  const ContainementAction:Action  = {
+
+  refAction: "ACT" + Date.now(),
+  position: FormContainementAction.position,
+  status: "En cours",
+  description: FormContainementAction.description,
+  responsableAction: FormContainementAction.responsableAction,
+  dateResponse: FormContainementAction.dateResponse
+
+  }
+  this.createAction(ContainementAction, 'Action/AddAction', idPlan, 'Corrective Actions');
+}
 
 /* ---------------------FIN ContainementActions ------------------------------ */
 

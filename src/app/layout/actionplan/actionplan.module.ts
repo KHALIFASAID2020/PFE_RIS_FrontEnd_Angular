@@ -35,9 +35,11 @@ import {MatCardModule, MatAutocompleteModule,
   MatTableModule,
   MatToolbarModule,
   MatTooltipModule} from '@angular/material';
+import { ContainementActionsComponent } from './detailsactionplan/containement-actions/containement-actions.component';
+import { AnalysisTeamComponent } from './detailsactionplan/analysis-team/analysis-team.component';
 
 @NgModule({
-  declarations: [ActionplanComponent, DetailsactionplanComponent],
+  declarations: [ActionplanComponent, DetailsactionplanComponent, ContainementActionsComponent, AnalysisTeamComponent],
   imports: [
     CommonModule, ActionplanRoutingModule,MatTabsModule,MatCardModule, MatAutocompleteModule,
     MatButtonModule,

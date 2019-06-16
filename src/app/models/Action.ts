@@ -7,11 +7,12 @@ export class Action {
   _id?: string;
   refAction: string;
   position: string;
-  status: User;
+  status: string;
   description:string;
-  actionplan:ActionPlan;
+  actionplan?:ActionPlan;
   responsableAction:User;
-  typeAction:ActionType;
+  typeAction?:ActionType;
+  dateResponse:  Date;
 }
 
 
