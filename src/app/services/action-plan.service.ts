@@ -14,6 +14,11 @@ export class ActionPlanService {
   }
 
 
+  public getActionPlanByReceived(route: string){
+    return this.http.get(this.createCompleteRoute(route, environment.urlAddress)) ;
+  }
+
+
   private createCompleteRoute(route: string, envAddress: string) {
     return `${envAddress}/${route}`;
   }

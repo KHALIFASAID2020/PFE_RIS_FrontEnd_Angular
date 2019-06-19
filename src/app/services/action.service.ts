@@ -43,12 +43,29 @@ getAllActionByActionPlan(route: string): void {
   return this.http.get(this.createCompleteRoute(route, environment.urlAddress));
  }
 
-//
+ public  getActionById(route: string) {
+  return this.http.get(this.createCompleteRoute(route, environment.urlAddress));
+ }
+
+//getActionReceived
+public  getActionReceived(route: string) {
+  return this.http.get(this.createCompleteRoute(route, environment.urlAddress));
+ }
+/*  getActionByIdforUpdate(){
+
+ } */
+
+public deleteAction(route: string){
+  return this.http.delete(this.createCompleteRoute(route, environment.urlAddress));
+}
 
 private createCompleteRoute(route: string, envAddress: string) {
   return `${envAddress}/${route}`;
 }
 
+public updateActionByCreator(route: string, body){
+  return this.http.put(this.createCompleteRoute(route, environment.urlAddress), body, this.generateHeaders());
+}
 
 public createAction (route: string, body) {
   return this.http.post(this.createCompleteRoute(route, environment.urlAddress), body,this.generateHeaders());

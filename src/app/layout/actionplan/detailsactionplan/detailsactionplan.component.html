@@ -122,70 +122,7 @@
 <!-- ------------------------- ContainementActions -------------------------------------------- -->
 
     <mat-tab label="D3 : Containement Actions">
-
-
-
-  <section fxLayout="row wrap" fxLayoutAlign="center center">
-        <mat-card fxFlex="1000px" fxFlex.xs="100%">
-          <mat-card-title>   <h1>Containement Actions</h1></mat-card-title>
-          <form  [formGroup]="FormContainementActions"  (ngSubmit)="createContainementAction(FormContainementActions.value)" autocomplete="off" novalidate  fxLayout="column wrap"
-            fxLayoutAlign="center center" fxLayoutGap="10px">
-            <mat-card-content>
-              <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="2%" fxLayoutAlign="center" >
-
-                  <mat-form-field class="example-full-width" fxFlex="7%">
-                      <input matInput type="text" placeholder="Position Action"   formControlName="position" id="position"  >
-                      <mat-hint align="end">Position Action</mat-hint>
-                        </mat-form-field>
-
-
-
-                        <mat-form-field class="example-full-width" fxFlex="30%">
-                            <input matInput type="text" placeholder="description"   formControlName="description" id="description"  >
-                            <mat-hint align="end">Description Action</mat-hint>
-                              </mat-form-field>
-
-
-                              <mat-form-field class="example-full-width" fxFlex="15%" >
-                                <input matInput type="date" required  placeholder="Choose a date of reponse"  placeholder="Choose a date of " formControlName="dateResponse">
-                                <mat-hint align="end">Date Of Response</mat-hint>
-
-
-                            </mat-form-field>
-
-
-         <mat-form-field  class="form-control" fxFlex="15%">
-        <mat-label>Select Responsable Action </mat-label>
-      <mat-select required formControlName="responsableAction"  ng-model='listUser'>
-        <mat-option *ngFor="let user of listUser" [value]="user._id">  {{user.lastname}}   {{user.firstname}} </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-
-
-
-
-
-    <button mat-raised-button color="primary" type="submit"  [disabled]="FormContainementActions.invalid">Save Action</button>
-      </div>
-    </mat-card-content>
-    <mat-card-actions align="center">
-    </mat-card-actions>
-</form>
-</mat-card></section>
-
-
-
-
-
-
-
-
-
-
-
-
-
+      <app-containement-actions></app-containement-actions>
 
 
 
@@ -203,62 +140,11 @@
 <!-- -------------------------FIN Containement Actions -------------------------------------------- -->
 
       <mat-tab label="D4 : Root Cause">
-       <app-containement-actions></app-containement-actions>
-      </mat-tab>
+<h1>root cause</h1>      </mat-tab>
 
 
        <mat-tab label="D5 : Corrective Actions">
-   <section fxLayout="row wrap" fxLayoutAlign="center center">
-        <mat-card fxFlex="1000px" fxFlex.xs="100%">
-          <mat-card-title>   <h1>Corrective Actions</h1></mat-card-title>
-          <form  [formGroup]="FormCorrectiveActions"  (ngSubmit)="createCorrectiveAction(FormCorrectiveActions.value)" autocomplete="off" novalidate  fxLayout="column wrap"
-            fxLayoutAlign="center center" fxLayoutGap="10px">
-            <mat-card-content>
-              <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="2%" fxLayoutAlign="center" >
-
-
-                <mat-form-field class="example-full-width" fxFlex="7%">
-                  <input matInput type="text" placeholder="Position Action"   formControlName="position" id="position"  >
-                  <mat-hint align="end">Position Action</mat-hint>
-                    </mat-form-field>
-
-
-
-                    <mat-form-field class="example-full-width" fxFlex="30%">
-                        <input matInput type="text" placeholder="description"   formControlName="description" id="description"  >
-                        <mat-hint align="end">Description Action</mat-hint>
-                          </mat-form-field>
-
-
-                          <mat-form-field class="example-full-width" fxFlex="15%" >
-                            <input matInput type="date" required  placeholder="Choose a date of reponse"  placeholder="Choose a date of " formControlName="dateResponse">
-                            <mat-hint align="end">Date Of Response</mat-hint>
-
-
-                        </mat-form-field>
-
-
-     <mat-form-field  class="form-control" fxFlex="15%">
-    <mat-label>Select Responsable Action </mat-label>
-  <mat-select required formControlName="responsableAction"  ng-model='listUser'>
-    <mat-option *ngFor="let user of listUser" [value]="user._id">  {{user.lastname}}   {{user.firstname}} </mat-option>
-  </mat-select>
-</mat-form-field>
-
-
-
-
-
-
-    <button mat-raised-button color="primary" type="submit"  [disabled]="FormCorrectiveActions.invalid">Save Action</button>
-      </div>
-    </mat-card-content>
-    <mat-card-actions align="center">
-    </mat-card-actions>
-</form>
-</mat-card></section>
-
-
+  <app-corrective-actions></app-corrective-actions>
 
       </mat-tab>
        <mat-tab label="D6: Review of the effectiveness">

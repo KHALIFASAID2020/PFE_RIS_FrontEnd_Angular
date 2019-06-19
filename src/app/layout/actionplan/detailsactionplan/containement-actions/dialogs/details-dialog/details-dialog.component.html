@@ -1,0 +1,50 @@
+
+<div *ngIf="action?._id" class="container">
+  <h3 mat-dialog-title>Actionref °:{{action.refAction}}</h3>
+
+
+
+
+
+
+
+    <div class="form">
+      <label for="">Position :</label> {{action.position}}
+
+  </div>
+
+
+
+  <div class="form">
+    <label for="">Responsible :</label> {{action.responsableAction.lastname}} {{action.responsableAction.firstname}}
+
+</div>
+
+  <div class="form">
+    <label for="">Position :</label> {{action.position}}
+
+</div>
+
+  <div class="form">
+    <label for="">Action :</label>{{action.description}}
+
+</div>
+
+<div class="form">
+  <label for="">created At :</label> {{action.createdAt}}
+
+</div>
+
+
+    <div class="form">
+        <label for="">Date Response : </label>{{action.dateResponse}}
+
+    </div>
+
+    <div mat-dialog-actions>
+
+      <button  mat-flat-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
+
+    </div>
+
+</div>

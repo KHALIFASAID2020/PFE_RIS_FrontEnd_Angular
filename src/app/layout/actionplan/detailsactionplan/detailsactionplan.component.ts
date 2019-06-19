@@ -23,7 +23,6 @@ export class DetailsactionplanComponent implements OnInit {
   listContainementActions : Action[];
   listUser : User[];
   listResponsable : ResponsableAction[]
-  listCorrectiveActions : Action[];
 
   public descriptionForm: FormGroup;
   public ResponsableGroupForm: FormGroup;
@@ -85,8 +84,6 @@ export class DetailsactionplanComponent implements OnInit {
         this.getAllUser();
         this.getAllResponsableByGroupAnalyse();
          this.getComplaintRefByIdActionPlan();
-         this.getAllContainementActions();
-         this.getAllCorrectiveActions();
        // this.getAllContainementActions('Containement Actions');
      //   this.getAllTypeAction();
        // this.idType = this.CallbackFunctionToFindTypeById ("Containement Actions") ;
@@ -206,97 +203,10 @@ createdescription(descriptionForm){
 
 }
 
-/* ------------------- Problem Description ------------------- */
-
-/* --------------------- ContainementActions ------------------------------ */
-
-
-
-
-
-createAction(action:Action,route:string,idPlan : string,ActionType:string){
-
-  this.actionService.createAction(`${route}/?idPlan=${idPlan}&ActionType=${ActionType}`, action)
-  .subscribe((result) => {
-    console.log(result);
-    this.toastr.success(`${ActionType} Of this Plan created`);
-  }, (error) => {
-    console.error(error);
-    this.toastr.warning(`${ActionType} Of this Plan Error`,error);
-  });
-}
-
 //https://stackabuse.com/get-query-strings-and-parameters-in-express-js/
 
 
 
-
-
-
-createContainementAction(FormContainementAction){
-  const idPlan: string = this.activeRoute.snapshot.params.id;
-
-  const ContainementAction:Action  = {
-
-  refAction: "ACT" + Date.now(),
-  position: FormContainementAction.position,
-  status: "En cours",
-  description: FormContainementAction.description,
-  responsableAction: FormContainementAction.responsableAction,
-  dateResponse: FormContainementAction.dateResponse
-
-  }
-  this.createAction(ContainementAction, 'Action/AddAction', idPlan, 'Containement Actions');
-}
-
-
-
-
-
-/* Action Immédiate */
-
-
-/* Cause Root */
-
-
-
-
-/*  */
-getAllContainementActions(){
-  const idPlan: string = this.activeRoute.snapshot.params.id;
-
-  this.actionService.getActions(`Action/getActions/?idPlan=${idPlan}&ActionType=Containement Actions`).subscribe(result => {
-    this.listContainementActions = result as Action[];
-    console.log("All Containement Actions ",this.listContainementActions);
-  });
-}
-
-getAllCorrectiveActions(){
-  const idPlan: string = this.activeRoute.snapshot.params.id;
-
-  this.actionService.getActions(`Action/getActions/?idPlan=${idPlan}&ActionType=Corrective Actions`).subscribe(result => {
-    this.listCorrectiveActions = result as Action[];
-    console.log("All Containement Actions ",this.listCorrectiveActions);
-  });
-}
-
-createCorrectiveAction(FormContainementAction){
-  const idPlan: string = this.activeRoute.snapshot.params.id;
-
-  const ContainementAction:Action  = {
-
-  refAction: "ACT" + Date.now(),
-  position: FormContainementAction.position,
-  status: "En cours",
-  description: FormContainementAction.description,
-  responsableAction: FormContainementAction.responsableAction,
-  dateResponse: FormContainementAction.dateResponse
-
-  }
-  this.createAction(ContainementAction, 'Action/AddAction', idPlan, 'Corrective Actions');
-}
-
-/* ---------------------FIN ContainementActions ------------------------------ */
 
 
   public executeSelectedChange = (event) => {
