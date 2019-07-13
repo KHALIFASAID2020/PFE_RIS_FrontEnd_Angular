@@ -1,0 +1,116 @@
+<!-- <p>
+  detail-action-received works!
+</p>
+{{action.description}}
+{{action.status}}
+ --><!--
+<div class="button-row">
+    <a mat-raised-button color="primary" [routerLink]="['/actions']"><mat-icon>list</mat-icon></a>
+  </div>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title><h2>{{action.typeAction.typeAction}}</h2></mat-card-title>
+      <mat-card-subtitle>{{action.status}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <dl>
+
+        <dd> Position: {{action.position}}</dd>
+      </dl>
+      <dl>
+
+          <dd>Action Description : {{action.description}}</dd>
+        </dl>
+        <dl>
+
+            <dd>Create At : {{action.createdAt | date}} </dd>
+          </dl>
+
+          <dl>
+
+              <dd>Rsponse At : {{action.dateResponse | date}} </dd>
+            </dl>
+
+
+            <dl>
+            <mat-form-field class="example-full-width"  fxFlex="60%">
+
+                <textarea matInput placeholder="Leave a comment" rows="4"  placeholder="Complaint Description"   formControlName="description" id="descriptioncomplaint"></textarea>
+              <mat-hint align="end">Complaint Description</mat-hint>
+
+            </mat-form-field>
+          </dl>
+    </mat-card-content>
+    <mat-card-actions>
+      <a mat-raised-button color="primary" ><mat-icon>send</mat-icon></a>
+    </mat-card-actions>
+  </mat-card>
+ -->
+ <section *ngIf="action" fxLayout="row wrap" fxLayoutAlign="center center">
+
+
+ <div class="button-row">
+    <a mat-raised-button color="primary" [routerLink]="['/actions']"><mat-icon>list</mat-icon></a>
+  </div>
+  <mat-card class="example-card" >
+    <mat-card-header>
+      <mat-card-title><h2>Action Ref °: {{action.refAction}}</h2></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <dl>
+          <dd>Status : {{action.status}}</dd>
+
+        <dd>Response At : {{action.dateResponse | date}}</dd>
+        <dd>Action : {{action.description}}</dd>
+
+      </dl>   </mat-card-content>
+
+  </mat-card>
+<br>
+
+  <form  [formGroup]="ActionForm" (ngSubmit)="onFormSubmit(ActionForm.value)" >
+
+
+  <!--   <mat-form-field class="example-full-width">
+      <input matInput placeholder="ISBN" formControlName="isbn"
+             [errorStateMatcher]="matcher" [value]="action.status">
+
+      <mat-error>
+        <span *ngIf="!ActionForm.get('isbn').valid && ActionForm.get('isbn').touched">Please enter ISBN</span>
+      </mat-error>
+    </mat-form-field>
+ -->
+
+
+ <mat-form-field class="example-full-width"  fxFlex="60%" >
+  <select matNativeControl required formControlName="status" class="form-control">
+      <option value="">Select Status...</option>
+
+    <option value="En cours">En cours</option>
+    <option value="Demande Validation">Demande Validation</option>
+
+  </select>
+<mat-hint align="end">Action Status </mat-hint>
+
+</mat-form-field>
+        <mat-form-field class="example-full-width"  fxFlex="60%">
+
+            <textarea matInput placeholder="Leave a comment" rows="4" [value]="action.responseDescription" placeholder="Action Description"   formControlName="responseDescription" id="responseDescription">{{action.responseDescription}}</textarea>
+          <mat-error>
+              <span *ngIf="!ActionForm.get('responseDescription').valid && ActionForm.get('responseDescription').touched">Please enter Book Title</span>
+            </mat-error>
+        </mat-form-field>
+
+
+
+
+
+
+
+
+
+    <div class="button-row">
+      <button type="submit" [disabled]="!ActionForm.valid" mat-raised-button color="primary"><mat-icon>send</mat-icon></button>
+    </div>
+  </form>
+</section>

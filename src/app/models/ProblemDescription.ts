@@ -2,8 +2,7 @@ import { ActionPlan } from './Action-Plan-model';
 
 export class ProblemDescription {
   _id?: string;
-  actionplan: ActionPlan;
+  actionplan?: ActionPlan;
   description:string;
-  RefDescriptionProblem : string
 }
 

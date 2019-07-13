@@ -31,7 +31,7 @@ error ='';
         data => {
           this.router.navigate([this.returnUrl]);
         },error =>{
-          this.error =error;
+          this.error ='Please enter a valid password or email';
         }
       )
 }

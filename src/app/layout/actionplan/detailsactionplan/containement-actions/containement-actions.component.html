@@ -13,20 +13,23 @@
                         </mat-form-field>
 
 
-                        <mat-form-field class="example-full-width" fxFlex="30%">
+                        <mat-form-field class="example-full-width" fxFlex="20%">
                             <input matInput type="text" placeholder="description"   formControlName="description" id="description" [(ngModel)]="selectedAction.description" >
                             <mat-hint align="end">Description Action</mat-hint>
                               </mat-form-field>
 
 
 
+                              <mat-form-field class="form-group" fxFlex="10%" >
+                                <div class="form-group">
+                                <input matInput type="date" required  placeholder="Choose a date of deadline" [(ngModel)]="selectedAction.dateResponse"  formControlName="dateResponse">
 
-                            <mat-form-field class="example-full-width" fxFlex="15%" >
-                            <input matInput [(ngModel)]="selectedAction.dateResponse" formControlName="dateResponse" [matDatepicker]="from"  placeholder="From">
+                              </div>
+                         <mat-hint align="end">Date of DeadLine</mat-hint>
 
-                              <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
-                              <mat-datepicker #from></mat-datepicker>
                             </mat-form-field>
+
+
 
          <mat-form-field  class="form-control" fxFlex="15%">
         <mat-label>Select Responsable Action </mat-label>
@@ -101,7 +104,14 @@ firstname: string;
 
 <ng-container matColumnDef="Status">
   <th mat-header-cell *matHeaderCellDef mat-sort-header>Status </th>
-  <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+  <td  [ngClass]="{
+    'NonAttribué' : element.status ==	'Non Attribué',
+    'DemandeValidation' : element.status ==	'Demande Validation',
+    'Validé': element.status ==	'Validé',
+    'Encours': element.status ==	'En cours'
+ }" mat-cell *matCellDef="let element"> {{element.status }}  </td>
+
+
 </ng-container>
 
 <ng-container matColumnDef="Details">

@@ -23,6 +23,11 @@ export class ComplaintService {
     return this.http.get(this.createCompleteRoute(route, environment.urlAddress)) ;
   }
 
+
+  public getCountAllReclamationByDestination (route : string){
+    return this.http.get(this.createCompleteRoute(route, environment.urlAddress)) ;
+  }
+
   public getReclamationReceivedDetails(route : string){
     return this.http.get(this.createCompleteRoute(route, environment.urlAddress)) ;
   }

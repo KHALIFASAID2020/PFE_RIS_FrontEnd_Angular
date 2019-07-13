@@ -1,1 +1,20 @@
 @import '../detailsactionplan.component.scss';
+
+.NonAttribué {
+  color: red;
+  font-weight: bold;
+}
+
+.DemandeValidation {
+  color: rebeccapurple;
+  font-weight: bold;
+}
+
+.Validé {
+  color: green;
+  font-weight: bold;
+}
+.Encours {
+  color: orchid;
+  font-weight: bold;
+}

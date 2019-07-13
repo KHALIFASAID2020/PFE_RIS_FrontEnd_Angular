@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule, MatCardModule, MatIconModule, MatTableModule, MatFormFieldModule } from '@angular/material';
+import { StatModule } from './stat/stat.module';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -12,7 +13,7 @@ import { MatButtonModule, MatCardModule, MatIconModule, MatTableModule, MatFormF
     DashboardRoutingModule,
     MatCardModule,
         MatCardModule,
-        MatTableModule,
+        MatTableModule,StatModule,
         MatButtonModule,MatFormFieldModule,
         MatIconModule,
         FlexLayoutModule.withConfig({addFlexToParent: false})

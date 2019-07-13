@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActionsComponent } from './actions.component';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+
 import { ActionsRoutingModule } from './actions-routing.module';
 import {MatCardModule, MatAutocompleteModule,
   MatButtonModule,
@@ -30,13 +32,14 @@ import {MatCardModule, MatAutocompleteModule,
   MatTableModule,
   MatToolbarModule,
   MatTooltipModule} from '@angular/material';
+import { DetailActionReceivedComponent } from './detail-action-received/detail-action-received.component';
 @NgModule({
-  declarations: [ActionsComponent],
+  declarations: [ActionsComponent, DetailActionReceivedComponent],
   imports: [
     CommonModule, ActionsRoutingModule,MatCardModule, MatAutocompleteModule,
     MatButtonModule,
     MatPaginatorModule,
-    MatButtonToggleModule,
+    MatButtonToggleModule,FormsModule,ReactiveFormsModule,
     MatCheckboxModule,
     MatChipsModule,
     MatDatepickerModule,

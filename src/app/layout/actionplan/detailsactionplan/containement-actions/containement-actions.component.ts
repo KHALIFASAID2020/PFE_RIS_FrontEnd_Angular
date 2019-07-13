@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Action } from 'src/app/models/Action';
-
+import {interval} from "rxjs/internal/observable/interval";
+import {startWith, switchMap} from "rxjs/operators";
 import { FormGroup, FormControl, Validators, NgForm, FormGroupDirective, FormBuilder } from '@angular/forms';
 import { ActionService } from 'src/app/services/action.service';
 import { ResponsableAction } from 'src/app/models/ResponsableAction';
@@ -11,6 +12,7 @@ import { MatTableDataSource, MatSort, MatPaginator, ErrorStateMatcher, MatDialog
 import { DetailsDialogComponent } from './dialogs/details-dialog/details-dialog.component';
 import { EditDialogComponent } from './dialogs/edit-dialog/edit-dialog.component';
 import { User } from 'src/app/models/user.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-containement-actions',
@@ -81,12 +83,19 @@ idPlan: string;
   }
 
 getAllResponsableByGroupAnalyse() {
-  const id: string = this.activeRoute.snapshot.params.id;
-  this.analysisGroupeService.getAllResponsableByGroupAnalyse(`responsableAction/getAllResponsableByGroupAnalyse/${id}`).subscribe(result => {
+ const id: string = this.activeRoute.snapshot.params.id;
+ /* this.analysisGroupeService.getgetAllResponsableByGroupAnalyse(`responsableAction/getAllResponsableByGroupAnalyse/${id}`).subscribe(result => {
     //this.listResponsable = result as User[];
     console.log(result);
     this.listUser = result as ResponsableAction[];
-  });
+  }); */
+  interval(5000)
+  .pipe(
+        startWith(0),
+        switchMap(() =>  this.analysisGroupeService.getAllResponsableByGroupAnalyse(`responsableAction/getAllResponsableByGroupAnalyse/${id}`))
+      )
+      .subscribe(res => this.listUser = res as ResponsableAction[] )
+    ;
 }
 
 
@@ -136,15 +145,7 @@ updateAction(FormContainementAction,id : string){
 
     console.error(error);
   });
-
-
-
-
-
-
 }
-
-
 
 createAction(action:Action,route:string,idPlan : string,ActionType:string){
 
@@ -167,8 +168,6 @@ createAction(action:Action,route:string,idPlan : string,ActionType:string){
     this.toastr.warning(`${ActionType} Of this Plan Error`,error);
   });
 
-
-
 }
 
 // Delete
@@ -181,24 +180,13 @@ onDelete(_id: string) {
       //this.resetForm(form);
       this.toastr.error('Action deleted','Action deleted');
       this.getAllContainementActions();
-
-
-
-
       console.log('Default deleted');
-
-
-
-
-
     });
   }
 }
 
 
 redirectToDetailsAction(id: string) {
-
-
 
   const dialogRef = this.dialog.open(DetailsDialogComponent, {
     data: {id: id}

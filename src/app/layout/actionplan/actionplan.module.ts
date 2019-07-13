@@ -44,9 +44,10 @@ import { PreventiveActionsComponent } from './detailsactionplan/preventive-actio
 import { GroupcongratulationsComponent } from './detailsactionplan/groupcongratulations/groupcongratulations.component';
 import { RootCauseComponent } from './detailsactionplan/root-cause/root-cause.component';
 import { EditDialogComponent } from './detailsactionplan/containement-actions/dialogs/edit-dialog/edit-dialog.component';
+import { DetailDescriptionComponent } from './detailsactionplan/problem-description/detail-description/detail-description.component';
 
 @NgModule({
-  declarations: [ActionplanComponent, DetailsactionplanComponent, ContainementActionsComponent, AnalysisTeamComponent, ProblemDescriptionComponent, CorrectiveActionsComponent, ReviewoftheeffectivenessComponent, PreventiveActionsComponent, GroupcongratulationsComponent, RootCauseComponent, DetailsDialogComponent, EditDialogComponent],
+  declarations: [ActionplanComponent, DetailsactionplanComponent, ContainementActionsComponent, AnalysisTeamComponent, ProblemDescriptionComponent, CorrectiveActionsComponent, ReviewoftheeffectivenessComponent, PreventiveActionsComponent, GroupcongratulationsComponent, RootCauseComponent, DetailsDialogComponent, EditDialogComponent, DetailDescriptionComponent],
   imports: [
     CommonModule, ActionplanRoutingModule,MatTabsModule,MatCardModule, MatAutocompleteModule,
     MatButtonModule,
@@ -77,7 +78,7 @@ import { EditDialogComponent } from './detailsactionplan/containement-actions/di
     MatToolbarModule,
     MatTooltipModule,FormsModule,ReactiveFormsModule,FlexLayoutModule
   ], entryComponents: [
-    DetailsDialogComponent,EditDialogComponent
+    DetailsDialogComponent,EditDialogComponent,DetailDescriptionComponent
   ],
 })
 export class ActionplanModule { }

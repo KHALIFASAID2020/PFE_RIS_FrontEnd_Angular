@@ -1,0 +1,45 @@
+<div class="basic-container">
+
+  <section  fxLayout="row wrap" fxLayoutAlign="left left">
+    <mat-card fxFlex="500px" fxFlex.xs="100%">
+      <form [formGroup]="descriptionForm" autocomplete="off"  (ngSubmit)="createdescription(complaintForm.value)" fxLayout="column full"
+        fxLayoutAlign="left left" fxLayoutGap="10px">
+        <mat-card-content>
+
+
+
+
+              <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
+
+                <mat-form-field class="example-full-width"  fxFlex="100%">
+
+                      <textarea matInput  rows="10"  placeholder="Create Description"    formControlName="description" id="descriptioncomplaint">kjhkjhkjh</textarea>
+                    <mat-hint align="end"> Description</mat-hint>
+
+                  </mat-form-field>
+
+              </div>
+
+
+        </mat-card-content>
+        <mat-card-actions align="center">
+          <button mat-raised-button color="primary"  [disabled]="!descriptionForm.valid" >Create</button>
+          <button  mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
+
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </section>
+  </div>
+  <!-- refReclamation: string;
+  typecompanyId: string;
+  produitId: string;
+  description: string;
+  daterep: string;
+  datelimit: string;
+  defautId: string;
+  companyId: string;
+  creatorId: string;
+  destinationId:string;
+  destinationencopy:string;
+  quantity:number; -->

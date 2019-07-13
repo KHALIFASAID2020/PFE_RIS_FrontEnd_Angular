@@ -20,25 +20,29 @@
                       <input type="password" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
                       <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
                       </mat-form-field>
-              </div>
+
+                    </div>
+
           </div>
 
-          <div fxFlex  fxLayout="row" fxLayout.lt-md="column" style="margin: 20px 0 30px 0">
+          <!-- <div fxFlex  fxLayout="row" fxLayout.lt-md="column" style="margin: 20px 0 30px 0">
               <div fxFlex>
                   <mat-checkbox color="primary">Remember Me</mat-checkbox>
               </div>
               <div fxFlex  fxLayoutAlign="end">
                   <a href="javascript:void(0)">Forget Password</a>
               </div>
-          </div>
+          </div> -->
           <div fxFlex  fxLayout="row" fxLayout.lt-md="column">
               <div fxFlexFill>
                   <button mat-raised-button color="primary" class="w-100">Login</button>
-              </div>
+                  <div *ngIf="error"><br>* {{error}}</div>
+                </div>
+
           </div>
 
       </form>
 
-      <div *ngIf="error">{{error}}</div>
+
   </div>
 </div>

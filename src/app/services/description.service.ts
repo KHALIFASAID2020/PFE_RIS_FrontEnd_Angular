@@ -13,6 +13,14 @@ export class DescriptionService {
     return this.http.post(this.createCompleteRoute(route, environment.urlAddress), body,this.generateHeaders());
   }
 
+  public getdescriptionPlan(route: string) {
+    return this.http.get(this.createCompleteRoute(route, environment.urlAddress));
+   }
+
+   public getdescriptionById(route: string) {
+    return this.http.get(this.createCompleteRoute(route, environment.urlAddress));
+   }
+
 
   private createCompleteRoute(route: string, envAddress: string) {
     return `${envAddress}/${route}`;

@@ -1,3 +1,28 @@
+.example-card {
+  max-width: 1080px;
+}
+
+.button-row {
+  margin: 10px 0;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 800px;
+  min-width: 300px;
+  overflow: auto;
+}
+
+.isbn-col {
+  flex: 0 0 100px !important;
+  white-space: unset !important;
+}
+
+.button-row {
+  margin: 10px 0;
+}
+
 mat-form-field{
   width: 400px;
 }
@@ -23,8 +48,6 @@ mat-card-title{
 
 
 
-
-
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 /* fallback */
 @font-face {
@@ -200,8 +223,8 @@ body {
 }
 
 .example-full-width {
-  width: 100%;
-  margin-bottom: 10px;
+  width: 95%;
+  margin: 20px;
 }
 table {
   width: 100%;

@@ -12,7 +12,10 @@ export class ActionPlanService {
   public createActionPlan (route: string, body) {
     return this.http.post(this.createCompleteRoute(route, environment.urlAddress), body,this.generateHeaders());
   }
-
+  //getCountAllActionPlanTeamLeader
+  public getCountAllActionPlanTeamLeader(route: string){
+    return this.http.get(this.createCompleteRoute(route, environment.urlAddress)) ;
+  }
 
   public getActionPlanByReceived(route: string){
     return this.http.get(this.createCompleteRoute(route, environment.urlAddress)) ;

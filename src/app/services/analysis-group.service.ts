@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from './../../environments/environment';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { ResponsableAction } from '../models/ResponsableAction';
+import { catchError, map, tap } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +19,7 @@ export class AnalysisGroupService {
 //get Aanlysisi Group
 
   public getAnalysisGroupByActionPlan(route : string){
+
     return this.http.get(this.createCompleteRoute(route, environment.urlAddress)) ;
   }
   public create (route: string, body) {
@@ -38,4 +43,13 @@ export class AnalysisGroupService {
     }
   }
 
+
+
+
+
+/** Log a HeroService message with the MessageService */
+
 }
+
+
+

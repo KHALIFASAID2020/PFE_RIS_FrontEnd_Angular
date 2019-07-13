@@ -12,7 +12,7 @@ import { Action } from 'src/app/models/Action';
   styleUrls: ['./actions.component.scss']
 })
 export class ActionsComponent implements OnInit {
-  public displayedColumns = ['Ref Action','Deadline','Action', 'Details'];
+  public displayedColumns = ['Ref Action','Deadline','Status','Action', 'Details'];
   public dataSource = new MatTableDataSource<Action>();
   currentUser: User;
   responsableActionId:string;
@@ -26,10 +26,6 @@ export class ActionsComponent implements OnInit {
     this.responsableActionId = this.currentUser._id;
     console.log(this.responsableActionId);
     this.getActionReceived(`Action/getAllActionReceived/${this.responsableActionId}`);
-
-
-
-
   }
   private getActionReceived = (route : string)=>{
     //const id : string = this.activeRoute.snapshot.params.id;
@@ -54,7 +50,7 @@ export class ActionsComponent implements OnInit {
 }
 
 redirectToDetailsPlanAction(id: string){
-  let url: string = `actionplan/detailsplan/${id}`;
+  let url: string = `actions/detailsactionreceived/${id}`;
   this.router.navigate([url]);
 console.log(id);
 }

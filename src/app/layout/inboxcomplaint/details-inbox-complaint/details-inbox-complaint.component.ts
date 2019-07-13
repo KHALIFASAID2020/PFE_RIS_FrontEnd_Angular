@@ -72,7 +72,7 @@ resetObject(){
       RefActionPlan: 'Plan'+Date.now(),
       reclamation:  this.activeRoute.snapshot.params.id,
       teamLeader: teamLeaderForm.teamLeader,
-      status: 'Non Atribué'
+      status: 'Non Cloturé'
 
     }
 console.log(actionPlan);
