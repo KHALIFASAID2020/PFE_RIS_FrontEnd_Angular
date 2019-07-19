@@ -110,6 +110,7 @@ export class UserModalComponent implements OnInit {
             this.location.back();
           }); */
           console.log(res);
+          this.dialogRef.close();
 
       },
         (error => {

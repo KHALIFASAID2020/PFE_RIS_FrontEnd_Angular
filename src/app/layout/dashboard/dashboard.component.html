@@ -1,12 +1,12 @@
 <div class="mb-20" fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="20px">
     <div fxFlex>
-        <app-stat [bgClass]="'danger'" [icon]="'dashboard'" [count]=countAction [label]="'Action pending assignment !'"></app-stat>
+        <app-stat [bgClass]="'danger'" [icon]="'dashboard'" [routerLink]="['/actions']" [count]=countAction [label]="'Action pending assignment !'"></app-stat>
     </div>
     <div fxFlex>
-        <app-stat [bgClass]="'warn'" [icon]="'view_list'" [count]="countActionPlan" [label]="'Acion Plan'"></app-stat>
+        <app-stat [bgClass]="'warn'" [icon]="'view_list'" [routerLink]="['/actionplan']"  [count]="countActionPlan" [label]="'Acion Plan'"></app-stat>
     </div>
     <div fxFlex>
-        <app-stat [bgClass]="'success'" [icon]="'memory'" [count]=countComplaint [label]="'Complaint Received'"></app-stat>
+        <app-stat [bgClass]="'success'" [icon]="'memory'" [routerLink]="['/inboxcomplaint']"  [count]=countComplaint [label]="'Complaint Received'"></app-stat>
     </div>
 </div>
 
@@ -19,7 +19,7 @@
   <div fxFlex>
       <mat-card>
           <mat-card-header>
-              <mat-card-title>Bar Chart</mat-card-title>
+              <mat-card-title>Fault Quanity By Type</mat-card-title>
           </mat-card-header>
           <mat-card-content>
 
@@ -32,12 +32,14 @@
   <div fxFlex>
       <mat-card>
           <mat-card-header>
-              <mat-card-title>Doughnut Chart</mat-card-title>
+              <mat-card-title>PPM (Parts Per Million) </mat-card-title>
+
           </mat-card-header>
           <mat-card-content>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro impedit, voluptate, repellat voluptates neque maiores officiis beatae ducimus eos animi rerum, temporibus nam sequi laudantium velit ut ullam incidunt nemo.</p>
+            <div id="chartdivPPM" style="width: 100%; height: 250px"></div>
 
           </mat-card-content>
+          <p>(Inspected defective units /units supplied) * 1.000.000</p>
       </mat-card>
   </div>
 </div><!--

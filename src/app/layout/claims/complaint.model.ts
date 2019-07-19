@@ -15,8 +15,8 @@ export class Complaint {
   defaut: fault;
   company: Company;
   creator: string;
-  destination:User[];
-  destinationencopy:User[];
+  photo?:string;
+  destination:User;
   quantity:string;
   createdAt?:string;
   //image:string

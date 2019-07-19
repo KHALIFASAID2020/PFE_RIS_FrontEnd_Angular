@@ -1,20 +1,108 @@
 
-  <section  fxLayout="row wrap" fxLayoutAlign="center center">
-    <mat-card fxFlex="1000px" fxFlex.xs="100%">
-      <mat-card-title>   <h1>Problem Description
-        <button mat-icon-button color="primary" (click)="redirectToDescriptionDialog(description._id)">
-          <!--  -->
-          <mat-icon class="mat-18">border_color</mat-icon>
-          Create
-        </button></h1>
-      </mat-card-title>
+
 <div >
-     <p *ngIf="description?._id">{{description.description}}</p>
+     <p *ngIf="description?._id"></p>
 </div>
 
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card fxFlex="1000px" fxFlex.xs="100%">
+    <mat-card-title>   <h1>Problem Description</h1></mat-card-title>
+    <form   #FormDescription="ngForm" [formGroup]="DescriptionForm"  (ngSubmit)="createDescriptionProblem(DescriptionForm.value)">
+      <mat-card-content>
+        <div fxLayout="wra" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0%" fxLayoutAlign="center" >
 
 
-</mat-card></section>
+          <mat-form-field class="example-full-width" fxFlex="80%">
+
+            <textarea matInput placeholder="Leave a comment" rows="3" [(ngModel)]="selectedDescription.description" placeholder="Problem  Description"   formControlName="description" id="description" ></textarea>
+
+            <mat-hint align="end">Problem Description</mat-hint>
+              </mat-form-field>
+
+
+
+
+</div>
+</mat-card-content>
+<mat-card-actions align="center">
+    <button mat-raised-button color="primary" type="submit"  [disabled]="DescriptionForm.invalid">Save Description</button>
+
+</mat-card-actions>
+</form>
+
+
+<div fxLayout fxLayout.lt-md="column wrap" fxLayoutAlign="center center" fxLayoutGap.gt-sm="250px" fxLayoutGap.lt.md="20px">
+
+
+
+    <!--  <div>
+      <a  (click)="addContact()" mat-button color="primary">Create User</a>
+    </div> -->
+    </div>
+    <!-- 'Name', 'Company', 'Company type' , 'Poste', 'Email', 'Phone','Role' -->
+    <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
+
+    <table mat-table [dataSource]="dataSource" matSort>
+    <!--   public displayedColumns = ['Pos','Rsponsable Action','Action','created At', 'Response At','',Status'update', 'delete'];
+    firstname: string;
+      lastname: string;
+    -->
+
+
+
+    <ng-container matColumnDef="Description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+
+
+    <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef> Update </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="accent" (click)="onEdit(element)">
+              <mat-icon class="mat-18">system_update</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef> Delete </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button color="warn" (click)="onDelete(element._id)">
+                <mat-icon class="mat-18">delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+
+
+
+
+<!--  -->
+
+
+
+  </mat-card></section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

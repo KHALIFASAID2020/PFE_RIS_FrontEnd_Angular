@@ -119,28 +119,56 @@
                               </mat-form-field>
 
 
-
-
             </div>
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
+
+            <label for="image">choose image</label>
+
+            <input type="file" mat-raised-button color="warn" name="image" formControlName="image" id="image">
+            <button mat-raised-button color="warn" type="button" mat-button (click)="upload()">upload image</button>
+          </div>
+
+<!--
+                <input  type="file" placeholder="Select photo ..."   formControlName="photo" id="photo"  >
+                <mat-hint align="end">Select photo</mat-hint>
+                <button type="button" mat-button (click)="upload()">upload image</button>
+ -->
+<!--  <input type="file" name="image" formControlName="phoTO" id="photo">
+ <button type="button" mat-button (click)="upload()">upload image</button>
+
+ -->
+<!--  <h1>Upload File</h1>
+  <input type="file" (change)>
+ -->
+
+ <!-- <div>
+  <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
+  <input type="file" name="image" formControlName="destination" #filePicker  (change)="onImagePicked($event)">
+ <button type="button" (click)="Upload()">Upload Image</button>
+</div>
+
+</div> -->
+
+
            <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="left" >
 
 
             <mat-form-field  class="form-control" fxFlex="25%">
               <mat-label>Select Destination</mat-label>
 
-            <mat-select required formControlName="destination" multiple ng-model='listUser'>
+            <mat-select required formControlName="destination"  ng-model='listUser'>
               <mat-option *ngFor="let user of listUser" [value]="user._id">  {{user.lastname}}   {{user.firstname}} </mat-option>
             </mat-select>
           </mat-form-field>
 
 
-                    <mat-form-field  class="form-control" fxFlex="25%">
+                  <!--   <mat-form-field  class="form-control" fxFlex="25%">
                         <mat-label>User en Copy</mat-label>
 
                       <mat-select required formControlName="destinationencopy" multiple ng-model='listUser'>
                         <mat-option *ngFor="let user of listUser" [value]="user._id">{{user.lastname}}  {{user.firstname}} </mat-option>
                       </mat-select>
-                    </mat-form-field>
+                    </mat-form-field> -->
 
             </div>
 

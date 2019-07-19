@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ComplaintService } from './complaint.service';
 import { CompanyType } from '../../models/CompanyType-model';
@@ -30,18 +30,13 @@ export class ClaimsComponent implements OnInit {
   currentUser: User;
   listDefaut: fault[];
   creatorId : string;
-  constructor(private router : Router,private complaintService :ComplaintService,private authService: AuthService, private toastr: ToastrService) {
+  constructor(private router : Router, private el: ElementRef,private complaintService :ComplaintService,private authService: AuthService, private toastr: ToastrService) {
     this.currentUser = this.authService.currentUserValue;
     this.creatorId = this.currentUser._id;
     console.log(this.creatorId);
 
   }
-  onUpload(event) {
-    for(const file of event.files) {
-        this.uploadedFiles.push(file);
-        console.log(file);
-      }
-}
+
 
   ngOnInit() {
      this.complaintForm = new FormGroup({
@@ -53,8 +48,9 @@ export class ClaimsComponent implements OnInit {
       description:new FormControl('', [Validators.required, Validators.maxLength(6000)]),
       daterep: new FormControl('',[Validators.required]),
       datelimit: new FormControl('',[Validators.required]),
+      image:new FormControl('', [Validators.required]),
       destination:new FormControl('', [Validators.required]),
-      destinationencopy:new FormControl('', [Validators.required])    });
+  });
     this.getAllUser();
   this.getAllDefaut();
 
@@ -63,6 +59,49 @@ export class ClaimsComponent implements OnInit {
       this.listCompanyType= result
     })
   }
+/* selectedFile:File =null;
+  onImagePicked(event: Event) {
+
+    this.selectedFile=(event.target as HTMLInputElement).files[0];
+
+console.log(this.selectedFile);
+  } */
+
+  /* Upload() {
+    //retrieve file upload HTML tag
+
+    const fd=new FormData();
+    fd.append('image',this.selectedFile,this.selectedFile.name);
+    console.log(fd);
+
+this.complaintService.uploadImageComplaint('reclamation/uploadImagesReclamation',fd)
+.subscribe(res=>{
+  console.log(res);
+})
+
+  } */
+
+
+
+
+
+
+
+  upload() {
+    //retrieve file upload HTML tag
+    let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#image');
+    let fileCount: number = inputEl.files.length;
+    let formData = new FormData();
+    // make sure a file was selected.
+    if (fileCount > 0) {
+      //append the key name 'image' with the first file in the element
+      formData.append('image', inputEl.files.item(0));
+      console.log(inputEl.files.item(0));
+      this.complaintService.uploadImageComplaint('reclamation/uploadImagesReclamation',formData).subscribe(data => console.log(data), error => console.error(error));
+      };
+  }
+
+
 
 
 
@@ -98,12 +137,12 @@ getAllUser(){
 createclamis(complaintForm){
 
   console.log(complaintForm);
-console.log('Creator ID:',this.creatorId);
+  console.log('Creator ID:',this.creatorId);
   //console.log(this.)
 
 
   const complaint: Complaint = {
-    refReclamation: 'REC'+Date.now(),
+    refReclamation: 'REC'+Date.now().toString(),
     typecompany: complaintForm.typecompany,
     produit: complaintForm.produit,
     description: complaintForm.description,
@@ -113,7 +152,6 @@ console.log('Creator ID:',this.creatorId);
     company: complaintForm.company,
     creator: this.creatorId,
     destination: complaintForm.destination,
-    destinationencopy: complaintForm.destinationencopy,
     quantity: complaintForm.quantity
   }
 console.log('Complaint',complaint);
@@ -131,5 +169,6 @@ this.router.navigate(['../sentcomplaint']);
 
 
   }
+
 
 }

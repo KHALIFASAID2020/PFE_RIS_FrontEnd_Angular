@@ -108,7 +108,10 @@ export class UsersManagerComponent implements OnInit,AfterViewInit{
 
 
     dialogRef.afterClosed().subscribe(result => {
+
       this.isPopupOpened = false;
+    this.getAllUsers();
+
     });
   }
 

@@ -1,3 +1,57 @@
-<p>
-  groupcongratulations works!
-</p>
+
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card fxFlex="1000px" fxFlex.xs="100%">
+    <mat-card-title>   <h1>Group congratulations
+      <h1  [ngClass]="{
+        'Cloturé' : ActionPlan.status ==	'Cloturé',
+        'NonCloturé' : ActionPlan.status ==	'Non Cloturé'
+     }">{{ActionPlan.status}}</h1>
+
+    </h1></mat-card-title>
+    <form #FormStatus="ngForm"   [formGroup]="FormActionPlanStatus"  (ngSubmit)="UpdateStatus(FormActionPlanStatus.value)">
+      <mat-card-content>
+
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center" >
+
+
+
+
+
+
+
+
+<mat-form-field  class="form-control" fxFlex="15%">
+<mat-label>Select Status Action Plan </mat-label>
+<select matNativeControl required formControlName="status" >
+  <option  value="Cloturé">Cloturé</option>
+  <option  value="Non Cloturé">Non Cloturé</option>
+
+</select>
+</mat-form-field>
+
+
+
+
+
+</div>
+</mat-card-content>
+<mat-card-actions align="center">
+    <button mat-raised-button color="primary" type="submit"  [disabled]="FormActionPlanStatus.invalid">Save Status</button>
+
+</mat-card-actions>
+</form>
+  </mat-card></section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

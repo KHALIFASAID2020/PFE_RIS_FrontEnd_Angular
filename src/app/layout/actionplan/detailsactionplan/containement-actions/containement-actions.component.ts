@@ -205,6 +205,8 @@ redirectToDetailsAction(id: string) {
 
 
 }
+
+
 onEdit(action: Action) {
   this.selectedAction = action;
   console.log(action);

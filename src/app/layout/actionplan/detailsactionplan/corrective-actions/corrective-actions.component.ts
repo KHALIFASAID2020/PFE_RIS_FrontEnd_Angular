@@ -14,6 +14,7 @@ import { RootCauseService } from 'src/app/services/root-cause.service';
 import {interval} from "rxjs/internal/observable/interval";
 
 import { startWith, switchMap } from 'rxjs/operators';
+import { DetailsDialogComponent } from '../containement-actions/dialogs/details-dialog/details-dialog.component';
 
 @Component({
   selector: 'app-corrective-actions',
@@ -125,7 +126,7 @@ this.AllRootCause();
   getAllCorrectiveActions(){
     const idPlan: string = this.activeRoute.snapshot.params.id;
 
-    this.actionService.getActions(`ActionCorretive/getActionsCorrectiveByPlanId/?idPlan=${idPlan}&ActionType=Corrective Actions`).subscribe(result => {
+    this.actionService.getActions(`Action/getActions/?idPlan=${idPlan}&ActionType=Corrective Actions`).subscribe(result => {
       this.dataSource.data = result as Action[];
       console.log("All Ccorrective Actions ..... ",result);
     });
@@ -150,7 +151,7 @@ createCorrectiveAction(FormCorrectiveAction){
 
 
   if (this.selectedAction._id === '') {
-    this.createAction(correctiveAction, 'ActionCorretive/AddActionCorrective', idPlan, 'Corrective Actions');
+    this.createAction(correctiveAction, 'Action/AddAction', idPlan, 'Corrective Actions');
   }else {
      this.updateAction(FormCorrectiveAction,this.selectedAction._id,);
     }
@@ -161,7 +162,7 @@ updateAction(FormCorrectiveAction,id : string){
   console.log(id);
   console.log(FormCorrectiveAction);
 
- this.actionService.updateActionByCreator(`ActionCorretive/${id}`, FormCorrectiveAction).subscribe((result: Action)=>{
+ this.actionService.updateActionByCreator(`Action/updateActionByCreator/${id}`, FormCorrectiveAction).subscribe((result: Action)=>{
     this.toastr.info('Action Updated','Action Updated');
     this.getAllCorrectiveActions();
 
@@ -220,7 +221,7 @@ createAction(action:Action,route:string,idPlan : string,ActionType:string){
 
 redirectToDetailsAction(id: string) {
 
- /*  const dialogRef = this.dialog.open(DetailsDialogComponent, {
+  const dialogRef = this.dialog.open(DetailsDialogComponent, {
     data: {id: id}
   });
 
@@ -230,13 +231,14 @@ redirectToDetailsAction(id: string) {
       // for delete we use splice in order to remove single object from DataService
       //his.exampleDatabase.dataChange.value.splice(foundIndex, 1);
      // this.refreshTable();
-     this.getAllContainementActions();
+     this.getAllCorrectiveActions();
 
   });
   console.log(id);
 
- */
+
 }
+
 
 
 onEdit(action: Action) {
@@ -253,7 +255,7 @@ onEdit(action: Action) {
   this.dataSource.filter = filterValue;
 }
 onDelete(_id: string) {
- let apiUrlforDelete = `ActionCorretive/${_id}`;
+ let apiUrlforDelete = `Action/${_id}`;
   if (confirm('Are you sure to delete this record ?') == true) {
     this.actionService.deleteAction(apiUrlforDelete).subscribe((res) => {
       //this.refreshEmployeeList();

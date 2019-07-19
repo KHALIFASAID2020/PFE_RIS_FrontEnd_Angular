@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Action } from 'src/app/models/Action';
-import { MatTableDataSource, MatSort, MatPaginator, ErrorStateMatcher } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator, ErrorStateMatcher, MatDialog } from '@angular/material';
 import { ResponsableAction } from 'src/app/models/ResponsableAction';
 import { FormGroup, FormControl, NgForm, FormGroupDirective, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -11,6 +11,7 @@ import { User } from 'src/app/models/user.model';
 import {interval} from "rxjs/internal/observable/interval";
 
 import { startWith, switchMap } from 'rxjs/operators';
+import { DetailsDialogComponent } from '../containement-actions/dialogs/details-dialog/details-dialog.component';
 @Component({
   selector: 'app-reviewoftheeffectiveness',
   templateUrl: './reviewoftheeffectiveness.component.html',
@@ -39,7 +40,7 @@ export class ReviewoftheeffectivenessComponent implements OnInit {
   constructor(private activeRoute: ActivatedRoute,
               private actionService: ActionService,
               private analysisGroupeService: AnalysisGroupService,
-              private toastr: ToastrService, ) {
+              private toastr: ToastrService, public dialog: MatDialog ) {
                 this.idPlan = this.activeRoute.snapshot.params.id;
 
                }
@@ -50,7 +51,7 @@ export class ReviewoftheeffectivenessComponent implements OnInit {
       description: new FormControl('', [Validators.required]),
       responsableAction: new FormControl('', [Validators.required]) ,
       dateResponse: new FormControl('', [Validators.required]),
-      ActionCorrective:new FormControl('', [Validators.required])
+      actioncorrective:new FormControl('', [Validators.required])
     });
     this.getAllResponsableByGroupAnalyse();
     this.getAllCorrectiveActions();
@@ -60,7 +61,7 @@ this.getAllreviewoftheeffectiveness();
 
   getAllreviewoftheeffectiveness(){
     const idPlan: string = this.activeRoute.snapshot.params.id;
-    this.actionService.getActions(`Reviewoftheeffectiveness/getActionReviewoftheeffectivenessByPlanId/?idPlan=${idPlan}&ActionType=Review of the effectiveness`).subscribe(result => {
+    this.actionService.getActions(`Action/getActions/?idPlan=${idPlan}&ActionType=Review of the effectiveness`).subscribe(result => {
       this.dataSource.data = result as Action[];
       console.log("Allreviewoftheeffectiveness ..... ",result);
     });
@@ -91,7 +92,7 @@ this.getAllreviewoftheeffectiveness();
     interval(5000)
     .pipe(
           startWith(0),
-          switchMap(() =>  this.actionService.getActions(`ActionCorretive/getActionsCorrectiveByPlanId/?idPlan=${idPlan}&ActionType=Corrective Actions`))
+          switchMap(() =>  this.actionService.getActions(`Action/getActions/?idPlan=${idPlan}&ActionType=Corrective Actions`))
         )
         .subscribe(result => this.listCorrectiveActions = result as Action[] )
       ;
@@ -107,7 +108,7 @@ this.getAllreviewoftheeffectiveness();
     description:'',
     responsableAction:new User(),
     dateResponse:  '',
-    ActionCorrective:new Action()
+    actioncorrective:new Action()
       };
     }
 
@@ -120,9 +121,26 @@ this.getAllreviewoftheeffectiveness();
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
      }
-     redirectToDetailsAction(){
+     redirectToDetailsAction(id: string) {
 
-     }
+      const dialogRef = this.dialog.open(DetailsDialogComponent, {
+        data: {id: id}
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+
+         // const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
+          // for delete we use splice in order to remove single object from DataService
+          //his.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+         // this.refreshTable();
+         this.getAllreviewoftheeffectiveness();
+
+      });
+      console.log(id);
+
+
+    }
+
 
      createReviewoftheeffectiveness(formReviewoftheeffectiveness){
       const idPlan: string = this.activeRoute.snapshot.params.id;
@@ -135,13 +153,13 @@ this.getAllreviewoftheeffectiveness();
       description: formReviewoftheeffectiveness.description,
       responsableAction: formReviewoftheeffectiveness.responsableAction,
       dateResponse: formReviewoftheeffectiveness.dateResponse,
-      ActionCorrective:formReviewoftheeffectiveness.ActionCorrective
+      actioncorrective:formReviewoftheeffectiveness.actioncorrective
 
       }
 
 
       if (this.selectedAction._id === '') {
-        this.createAction(formReview, 'Reviewoftheeffectiveness/AddReviewoftheeffectiveness', idPlan, 'Review of the effectiveness');
+        this.createAction(formReview, 'Action/AddAction', idPlan, 'Review of the effectiveness');
       }else {
          this.updateAction(formReviewoftheeffectiveness,this.selectedAction._id,);
         }
@@ -152,7 +170,7 @@ this.getAllreviewoftheeffectiveness();
       console.log(id);
       console.log(FormCorrectiveAction);
 
-     this.actionService.updateActionByCreator(`Reviewoftheeffectiveness/${id}`, FormCorrectiveAction).subscribe((result: Action)=>{
+     this.actionService.updateActionByCreator(`Action/updateActionByCreator/${id}`, FormCorrectiveAction).subscribe((result: Action)=>{
         this.toastr.info('Action Updated','Action Updated');
         this.getAllreviewoftheeffectiveness();
 
@@ -228,7 +246,7 @@ this.getAllreviewoftheeffectiveness();
       this.dataSource.filter = filterValue;
     }
     onDelete(_id: string) {
-     let apiUrlforDelete = `Reviewoftheeffectiveness/${_id}`;
+     let apiUrlforDelete = `Action/${_id}`;
       if (confirm('Are you sure to delete this record ?') == true) {
         this.actionService.deleteAction(apiUrlforDelete).subscribe((res) => {
           //this.refreshEmployeeList();

@@ -24,7 +24,7 @@ import { ActionPlanService } from 'src/app/services/action-plan.service';
 })
 export class DashboardComponent {
   private chart: am4charts.XYChart;
-
+private chartPPM : am4charts.XYChart;
   currentUser: User;
   countAction: any;
   countComplaint: any;
@@ -100,7 +100,7 @@ export class DashboardComponent {
 
 
 
-      
+
       chart.data = [
         {
           country: "Fournisseur",
@@ -142,11 +142,116 @@ export class DashboardComponent {
 
 
     });
+
+
+
+
+
+    this.zone.runOutsideAngular(() => {
+      let chartPPM = am4core.create("chartdivPPM", am4charts.XYChart);
+
+      // Add percent sign to all numbers
+      chartPPM.numberFormatter.numberFormat = "#.3'%'";
+
+      // Add data
+      chartPPM.data = [{
+          "Article": "AG246",
+          "PPM": 3.5,
+          "supplied": 10
+      }, {
+          "Article": "AG213",
+          "PPM": 1.7,
+          "supplied": 11.5
+      }, {
+          "Article": "AG80",
+          "PPM": 2.8,
+          "supplied": 11
+      }, {
+          "Article": "AG172",
+          "PPM": 2.6,
+          "supplied": 12
+      }, {
+          "Article": "AB01B",
+          "PPM": 1.4,
+          "supplied": 7
+      }, {
+          "Article": "AK44",
+          "PPM": 2.6,
+          "supplied": 8
+      }];
+
+      // Create axes
+      let categoryAxis = chartPPM.xAxes.push(new am4charts.CategoryAxis());
+      categoryAxis.dataFields.category = "Article";
+      categoryAxis.renderer.grid.template.location = 0;
+      categoryAxis.renderer.minGridDistance = 30;
+
+      let valueAxis = chartPPM.yAxes.push(new am4charts.ValueAxis());
+      valueAxis.title.text = "PPM Parts Per Million ";
+     // valueAxis.title.fontWeight = 800;
+
+      // Create series
+      let series = chartPPM.series.push(new am4charts.ColumnSeries());
+      series.dataFields.valueY = "PPM";
+      series.dataFields.categoryX = "Article";
+      series.clustered = false;
+      series.tooltipText = "PPM {categoryX} (2019): [bold]{valueY}[/]";
+
+      let series2 = chartPPM.series.push(new am4charts.ColumnSeries());
+      series2.dataFields.valueY = "supplied";
+      series2.dataFields.categoryX = "Article";
+      series2.clustered = false;
+      series2.columns.template.width = am4core.percent(50);
+      series2.tooltipText = "Quantity supplied {categoryX} (2019): [bold]{valueY}[/]";
+
+      chartPPM.cursor = new am4charts.XYCursor();
+      chartPPM.cursor.lineX.disabled = true;
+      chartPPM.cursor.lineY.disabled = true;
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   }
 
   ngOnDestroy() {
     this.zone.runOutsideAngular(() => {
       if (this.chart) {
+        this.chart.dispose();
+      }
+      if (this.chartPPM) {
         this.chart.dispose();
       }
     });

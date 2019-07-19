@@ -34,14 +34,14 @@
           <mat-form-field>
               <input matInput type="text" placeholder="User lastname" formControlName="lastname" id="lastanme">
               <mat-hint align="end">Not more then 60 characters long.</mat-hint>
-              <mat-error *ngIf="hasError('lastname', 'required')">Password is required</mat-error>
+              <mat-error *ngIf="hasError('lastname', 'required')">Lastname is required</mat-error>
               <mat-error *ngIf="hasError('lastname', 'maxlength')">You have more than 60 characters</mat-error>
             </mat-form-field>
 
             <mat-form-field>
                 <input matInput type="text" placeholder="User firstname" formControlName="firstname" id="firstname">
                 <mat-hint align="end">Not more then 60 characters long.</mat-hint>
-                <mat-error *ngIf="hasError('firstname', 'required')">Password is required</mat-error>
+                <mat-error *ngIf="hasError('firstname', 'required')">Firstname is required</mat-error>
                 <mat-error *ngIf="hasError('firstname', 'maxlength')">You have more than 60 characters</mat-error>
               </mat-form-field>
             </div>
@@ -65,7 +65,7 @@
                 <mat-form-field>
                     <input matInput type="text" placeholder="User's poste" formControlName="poste" id="poste">
                     <mat-hint align="end">Not more then 60 characters long.</mat-hint>
-                    <mat-error *ngIf="hasError('poste', 'required')">Password is required</mat-error>
+                    <mat-error *ngIf="hasError('poste', 'required')">Poste is required</mat-error>
                     <mat-error *ngIf="hasError('poste', 'maxlength')">You have more than 60 characters</mat-error>
                   </mat-form-field>
                   </div>
@@ -94,9 +94,9 @@
 
 
                     <mat-form-field>
-                        <input matInput type="text" placeholder="User's poste" formControlName="phone" id="phone">
+                        <input matInput type="text" placeholder="User's Phone" formControlName="phone" id="phone">
                         <mat-hint align="end">Not more then 60 characters long.</mat-hint>
-                        <mat-error *ngIf="hasError('phone', 'required')">Password is required</mat-error>
+                        <mat-error *ngIf="hasError('phone', 'required')">Phone is required</mat-error>
                         <mat-error *ngIf="hasError('phone', 'maxlength')">You have more than 60 characters</mat-error>
                       </mat-form-field>
                       </div>

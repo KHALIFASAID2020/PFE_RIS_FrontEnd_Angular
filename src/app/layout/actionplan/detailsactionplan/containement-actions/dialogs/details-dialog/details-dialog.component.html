@@ -1,50 +1,55 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
 
-<div *ngIf="action?._id" class="container">
-  <h3 mat-dialog-title>Actionref °:{{action.refAction}}</h3>
+  <mat-card fxFlex="700px" fxFlex.xs="100%">
+        <mat-card-title>Action Ref°:{{action?.refAction}} </mat-card-title>
 
+        <mat-card-content>
+          <div fxLayout="column wrap" fxLayoutGap="40px">
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong>Status:</strong></div>
+              <div fxFlex>{{action?.status}}</div>
+            </div>
 
-
-
-
-
-
-    <div class="form">
-      <label for="">Position :</label> {{action.position}}
-
-  </div>
-
-
-
-  <div class="form">
-    <label for="">Responsible :</label> {{action.responsableAction.lastname}} {{action.responsableAction.firstname}}
-
-</div>
-
-  <div class="form">
-    <label for="">Position :</label> {{action.position}}
-
-</div>
-
-  <div class="form">
-    <label for="">Action :</label>{{action.description}}
-
-</div>
-
-<div class="form">
-  <label for="">created At :</label> {{action.createdAt}}
-
-</div>
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong>Response Date</strong></div>
+              <div fxFlex>{{action?.dateResponse}}</div>
+            </div>
 
 
-    <div class="form">
-        <label for="">Date Response : </label>{{action.dateResponse}}
+            <div fxLayout="row wrap" fxFlex >
+                <div fxFlex><strong>Action:</strong></div>
+                <div fxFlex >{{action?.description}}</div>
+              </div>
 
-    </div>
+            <div fxLayout="row wrap" fxFlex >
+              <div fxFlex><strong>Responsable:</strong></div>
+              <div fxFlex >{{action?.responsableAction?.firstname}} {{action?.responsableAction?.lastname}}</div>
+            </div>
 
-    <div mat-dialog-actions>
+            <div fxLayout="row wrap" fxFlex >
+                <div fxFlex><strong>Description:</strong></div>
+                <div fxFlex >{{action?.responseDescription}}</div>
+              </div>
+            <ng-template #advancedUser>
+              <div fxLayout="row wrap" fxFlex>
+                <div fxFlex><strong>Type of user:</strong></div>
+                <div fxFlex class="advanced-color">Advanced user</div>
+              </div>
+            </ng-template>
+          </div>
 
-      <button  mat-flat-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
+        </mat-card-content>
+        <mat-card-actions>
+         <mat-select placeholder="Show accounts" (selectionChange)="onChange($event)">
+                <mat-option value="Validé">
+                    Validé
+                </mat-option>
+                <mat-option value="Non Validé">
+                    Non Validé
+                  </mat-option>
+              </mat-select>
 
-    </div>
+        </mat-card-actions>
+      </mat-card>
 
-</div>
+</section>

@@ -14,6 +14,7 @@ import { MatTableDataSource, MatSort, MatPaginator, MatDialog, ErrorStateMatcher
 import { User } from 'src/app/models/user.model';
 import { DocumentStandarisation } from 'src/app/models/DocumentStandarisation';
 import { DocumentStandarisationService } from 'src/app/services/document-standarisation.service';
+import { DetailsDialogComponent } from '../containement-actions/dialogs/details-dialog/details-dialog.component';
 
 @Component({
   selector: 'app-preventive-actions',
@@ -86,9 +87,9 @@ this.resetObject();
   getAllPreventiveActions(){
     const idPlan: string = this.activeRoute.snapshot.params.id;
 
-    this.actionService.getActions(`PreventiveActions/getPreventiveActionsByPlanId/?idPlan=${idPlan}&ActionType=Preventive Actions`).subscribe(result => {
+    this.actionService.getActions(`Action/getActions/?idPlan=${idPlan}&ActionType=Preventive Actions`).subscribe(result => {
       this.dataSource.data = result as [];
-      console.log("All Preventive Actions ..... ",result);
+      console.log("All Preventive Actions ..... ..... ",result);
     });
   }
 
@@ -124,7 +125,7 @@ this.resetObject();
 
 
       if (this.selectedAction._id === '') {
-        this.createAction(correctiveAction, 'PreventiveActions/AddPreventiveActions', idPlan, 'Preventive Actions');
+        this.createAction(correctiveAction, 'Action/AddAction', idPlan, 'Preventive Actions');
       }else {
          this.updateAction(FormPreventiveActions,this.selectedAction._id,);
         }
@@ -135,7 +136,7 @@ this.resetObject();
       console.log(id);
       console.log(FormPreventiveActions);
 
-     this.actionService.updateActionByCreator(`PreventiveActions/${id}`, FormPreventiveActions).subscribe((result: Action)=>{
+     this.actionService.updateActionByCreator(`Action/updateActionByCreator/${id}`, FormPreventiveActions).subscribe((result: Action)=>{
         this.toastr.info('Preventive Action Updated','Preventive Action Updated');
         this.getAllPreventiveActions();
 
@@ -186,23 +187,24 @@ this.resetObject();
 
     redirectToDetailsAction(id: string) {
 
-      /*  const dialogRef = this.dialog.open(DetailsDialogComponent, {
-         data: {id: id}
-       });
+      const dialogRef = this.dialog.open(DetailsDialogComponent, {
+        data: {id: id}
+      });
 
-       dialogRef.afterClosed().subscribe(result => {
+      dialogRef.afterClosed().subscribe(result => {
 
-          // const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
-           // for delete we use splice in order to remove single object from DataService
-           //his.exampleDatabase.dataChange.value.splice(foundIndex, 1);
-          // this.refreshTable();
-          this.getAllContainementActions();
+         // const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
+          // for delete we use splice in order to remove single object from DataService
+          //his.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+         // this.refreshTable();
+         this.getAllPreventiveActions();
 
-       });
-       console.log(id);
+      });
+      console.log(id);
 
-      */
-     }
+
+    }
+
 
 
      onEdit(action: Action) {
@@ -219,7 +221,7 @@ this.resetObject();
        this.dataSource.filter = filterValue;
      }
      onDelete(_id: string) {
-      let apiUrlforDelete = `PreventiveActions/${_id}`;
+      let apiUrlforDelete = `Action/${_id}`;
        if (confirm('Are you sure to delete this record ?') == true) {
          this.actionService.deleteAction(apiUrlforDelete).subscribe((res) => {
            //this.refreshEmployeeList();

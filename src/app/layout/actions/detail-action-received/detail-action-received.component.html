@@ -58,10 +58,11 @@
     </mat-card-header>
     <mat-card-content>
       <dl>
-          <dd>Status : {{action.status}}</dd>
+          <dd><b>Action Type : </b>{{action.typeAction.typeAction}}</dd>
+          <dd><b>Status : </b>{{action.status}}</dd>
 
-        <dd>Response At : {{action.dateResponse | date}}</dd>
-        <dd>Action : {{action.description}}</dd>
+        <dd><b>Response At : </b>{{action.dateResponse | date}}</dd>
+        <dd><b>Action :</b> {{action.description}}</dd>
 
       </dl>   </mat-card-content>
 

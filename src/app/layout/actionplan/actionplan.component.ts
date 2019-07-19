@@ -12,7 +12,7 @@ import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
   styleUrls: ['./actionplan.component.scss']
 })
 export class ActionplanComponent implements OnInit {
-  public displayedColumns = ['Ref Action Plan','Deadline', 'Details'];
+  public displayedColumns = ['Ref Action Plan','Deadline','Status', 'Details'];
   public dataSource = new MatTableDataSource<ActionPlan>();
   currentUser: User;
   teamLeaderId:string;

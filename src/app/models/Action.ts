@@ -20,7 +20,7 @@ export class Action {
   photo?:string;
   createdAt?:Date;
   cause?:RootCause;
-  ActionCorrective?:Action;
+  actioncorrective?:Action;
   Document?:DocumentStandarisation;
 }
 

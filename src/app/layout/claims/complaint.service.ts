@@ -19,6 +19,10 @@ export class ComplaintService {
     return this.http.post(this.createCompleteRoute(route, environment.urlAddress), body,this.generateHeaders());
   }
 
+  public uploadImageComplaint (route: string, body) {
+    return this.http.post(this.createCompleteRoute(route, environment.urlAddress), body);
+  }
+
   public getAllReclamationByDestination (route : string){
     return this.http.get(this.createCompleteRoute(route, environment.urlAddress)) ;
   }

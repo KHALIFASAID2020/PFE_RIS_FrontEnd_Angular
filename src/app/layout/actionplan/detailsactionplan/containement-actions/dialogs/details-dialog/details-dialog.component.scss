@@ -1,41 +1,16 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  min-width: 450px;
+mat-card-content, mat-card-title, mat-card-actions {
+  text-align: center;
 }
 
-.container > * {
-  width: 100%;
+mat-card-content{
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-.form {
-  display: flex;
-  padding-top: 6px;
+.advanced-color{
+  color: #3f51b5;
 }
 
-.mat-form-field {
-  font-size: 16px;
-  flex-grow: 1;
-}
-body {
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
-
-  // Helps fonts on OSX looks more consistent with other systems
-  // Isn't currently in button styles due to performance concerns
-  * {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  h1 {
-    font-size: 20px;
-  }
-
-  ul, li {
-    list-style: none;
-  }
-
-  nav a {
-    margin: 2px;
-  }
+.beginner-color{
+  color: #f44336;
 }

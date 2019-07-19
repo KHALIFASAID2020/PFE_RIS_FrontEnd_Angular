@@ -65,6 +65,12 @@ public updateActionByCreator(route: string, body){
   return this.http.put(this.createCompleteRoute(route, environment.urlAddress), body, this.generateHeaders());
 }
 
+public updateStatusActionByCreator(route: string, body){
+  return this.http.put(this.createCompleteRoute(route, environment.urlAddress), body);
+}
+
+
+
 public createAction (route: string, body) {
   return this.http.post(this.createCompleteRoute(route, environment.urlAddress), body,this.generateHeaders());
 }

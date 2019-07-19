@@ -117,6 +117,7 @@ console.log(this.selectedFault._id);
 
       this.isLoading = false;
       this.loader = false;
+
     this.resetForm();
 
 
